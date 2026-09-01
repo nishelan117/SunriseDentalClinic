@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Appointment - Sunrise Dental Clinic</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+
+            background: #172a35;
+
+            color: #f1e8d5;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            width: 240px;
+            height: 100vh;
+
+            background: #12343b;
+
+            border-right: 1px solid #31545c;
+
+            padding: 20px 13px;
+
+            z-index: 100;
+
+            overflow-y: auto;
+        }
+
+
+        /* ================= LOGO ================= */
+
+        .logo {
+
+            text-align: center;
+
+            padding: 8px 5px 22px;
+
+            border-bottom: 1px solid #31545c;
+
+            margin-bottom: 18px;
+        }
+
+
+        .logo-icon {
+
+            font-size: 36px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .logo h1 {
+
+            margin: 0;
+
+            color: #20b8b0;
+
+            font-size: 22px;
+
+            letter-spacing: 2px;
+        }
+
+
+        .logo p {
+
+            margin: 5px 0 0;
+
+            color: #d9e4df;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* ================= MENU ================= */
+
+        .menu {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .menu a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 13px 14px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #d3dfdd;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .menu a:hover {
+
+            background: #1d4b53;
+
+            color: #20c5bd;
+        }
+
+
+        .menu a.active {
+
+            background: #20a9a4;
+
+            color: #102d35;
+
+            font-weight: bold;
+        }
+
+
+        .menu-icon {
+
+            width: 25px;
+
+            text-align: center;
+
+            font-size: 18px;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+
+            margin-left: 240px;
+
+            min-height: 100vh;
+
+            background: #172a35;
+        }
+
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+
+        .topbar {
+
+            height: 70px;
+
+            background: #1d3b46;
+
+            border-bottom: 1px solid #31545c;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            position: relative;
+
+            z-index: 50;
+        }
+
+
+        .page-title {
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            color: #f1e8d5;
+        }
+
+
+        /* ================= PROFILE ================= */
+
+        .profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .profile-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #20a9a4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #102d35;
+
+            font-size: 18px;
+        }
+
+
+        .profile strong {
+
+            display: block;
+
+            color: #f1e8d5;
+
+            font-size: 14px;
+        }
+
+
+        .profile small {
+
+            display: block;
+
+            color: #aebfbe;
+
+            font-size: 11px;
+
+            margin-top: 3px;
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content {
+
+            padding: 30px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+        }
+
+
+        /* =====================================================
+           HEADING
+        ===================================================== */
+
+        .heading {
+
+            width: 100%;
+
+            max-width: 760px;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .heading h1 {
+
+            margin: 0 0 7px;
+
+            font-size: 30px;
+
+            color: #f1e8d5;
+        }
+
+
+        .heading p {
+
+            margin: 0;
+
+            color: #aebfbe;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           FORM BOX
+        ===================================================== */
+
+        .add-appointment-box {
+
+            width: 100%;
+
+            max-width: 760px;
+
+            background: #203b44;
+
+            border: 1px solid #365a62;
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            box-shadow:
+                    0 5px 18px
+                    rgba(0,0,0,0.20);
+        }
+
+
+        .box-title {
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            color: #20c5bd;
+
+            margin-bottom: 20px;
+
+            padding-bottom: 15px;
+
+            border-bottom:
+                    1px solid #41636a;
+        }
+
+
+        /* =====================================================
+           FORM GRID
+        ===================================================== */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px 20px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .form-group.full {
+
+            grid-column: 1 / -1;
+        }
+
+
+        label {
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            color: #e2ebe8;
+        }
+
+
+        .required {
+
+            color: #20c5bd;
+        }
+
+
+        /* =====================================================
+           INPUTS
+        ===================================================== */
+
+        input,
+        select {
+
+            width: 100%;
+
+            height: 44px;
+
+            padding: 0 12px;
+
+            border:
+                    1px solid #456873;
+
+            border-radius: 6px;
+
+            background: #153640;
+
+            color: white;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 14px;
+        }
+
+
+        input::placeholder {
+
+            color: #8baeb4;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            outline: none;
+
+            border-color: #20b9b5;
+
+            box-shadow:
+                    0 0 0 2px
+                    rgba(29,185,181,0.15);
+        }
+
+
+        input[readonly] {
+
+            background: #183b45;
+
+            color: #20c6c1;
+
+            font-weight: bold;
+
+            cursor: default;
+        }
+
+
+        select option {
+
+            background: #173942;
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           BUTTON AREA
+        ===================================================== */
+
+        .button-area {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top:
+                    1px solid #41636a;
+        }
+
+
+        .add-btn,
+        .clear-btn {
+
+            min-width: 155px;
+
+            height: 43px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .add-btn {
+
+            background: #20a9a4;
+
+            color: #102d35;
+        }
+
+
+        .add-btn:hover {
+
+            background: #42cbc5;
+        }
+
+
+        .add-btn:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+        }
+
+
+        .clear-btn {
+
+            background: #315963;
+
+            color: white;
+        }
+
+
+        .clear-btn:hover {
+
+            background: #3d6973;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        #message {
+
+            margin-top: 18px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            min-height: 20px;
+        }
+
+
+        .error {
+
+            color: #ff7676;
+        }
+
+
+        .success {
+
+            color: #54dc8b;
+        }
+
+
+        /* =====================================================
+           BACK LINK
+        ===================================================== */
+
+        .back-link {
+
+            display: inline-block;
+
+            margin-top: 18px;
+
+            color: #9fd1d5;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        .back-link:hover {
+
+            color: #20c5bd;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+
+                display: none;
+            }
+
+
+            .main {
+
+                margin-left: 0;
+            }
+
+
+            .content {
+
+                padding:
+                        25px 18px 40px;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-group.full {
+
+                grid-column: auto;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .topbar {
+
+                padding: 0 18px;
+            }
+
+
+            .page-title {
+
+                font-size: 19px;
+            }
+
+
+            .content {
+
+                padding: 20px 15px 35px;
+            }
+
+
+            .heading h1 {
+
+                font-size: 26px;
+            }
+
+
+            .add-appointment-box {
+
+                padding: 20px;
+            }
+
+
+            .button-area {
+
+                flex-direction: column;
+            }
+
+
+            .add-btn,
+            .clear-btn {
+
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🦷
+        </div>
+
+        <h1>
+            SUNRISE
+        </h1>
+
+        <p>
+            DENTAL CLINIC
+        </p>
+
+    </div>
+
+
+    <div class="menu">
+
+
+        <a href="dashboard.html">
+
+            <span class="menu-icon">
+                ⌂
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="appointments.html"
+           class="active">
+
+            <span class="menu-icon">
+                📅
+            </span>
+
+            Appointments
+
+        </a>
+
+
+        <a href="patients.html">
+
+            <span class="menu-icon">
+                👤
+            </span>
+
+            Patients
+
+        </a>
+
+
+        <a href="dentists.html">
+
+            <span class="menu-icon">
+                🧑‍⚕️
+            </span>
+
+            Dentists
+
+        </a>
+
+
+        <a href="services.html">
+
+            <span class="menu-icon">
+                🦷
+            </span>
+
+            Services
+
+        </a>
+
+
+        <a href="billing.html">
+
+            <span class="menu-icon">
+                🧾
+            </span>
+
+            Billing
+
+        </a>
+
+
+        <a href="reports.html">
+
+            <span class="menu-icon">
+                📊
+            </span>
+
+            Reports
+
+        </a>
+
+
+        <a href="notifications.html">
+
+            <span class="menu-icon">
+                🔔
+            </span>
+
+            Notifications
+
+        </a>
+
+
+        <a href="help.html">
+
+            <span class="menu-icon">
+                ❓
+            </span>
+
+            Help
+
+        </a>
+
+
+        <a href="settings.html">
+
+            <span class="menu-icon">
+                ⚙️
+            </span>
+
+            Settings
+
+        </a>
+
+
+        <a href="login.html">
+
+            <span class="menu-icon">
+                ↪
+            </span>
+
+            Logout
+
+        </a>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+
+        <div class="page-title">
+            Appointment Management
+        </div>
+
+
+        <div class="profile">
+
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Dr. Sunrise
+                </strong>
+
+                <small>
+                    Administrator
+                </small>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         CONTENT
+    ================================================= -->
+
+    <div class="content">
+
+
+        <div class="heading">
+
+            <h1>
+                Add New Appointment
+            </h1>
+
+            <p>
+                Schedule a new appointment at Sunrise Dental Clinic
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             FORM BOX
+        ================================================= -->
+
+        <div class="add-appointment-box">
+
+
+            <div class="box-title">
+                📅 Appointment Information
+            </div>
+
+
+            <form id="appointmentForm">
+
+
+                <div class="form-grid">
+
+
+                    <!-- APPOINTMENT NUMBER -->
+
+                    <div class="form-group">
+
+                        <label for="appointmentNumber">
+
+                            Appointment Number
+
+                        </label>
+
+
+                        <input
+                                type="text"
+                                id="appointmentNumber"
+                                readonly
+                        >
+
+                    </div>
+
+
+                    <!-- PATIENT -->
+
+                    <div class="form-group">
+
+                        <label for="patient">
+
+                            Patient Name
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                                type="text"
+                                id="patient"
+                                list="patientList"
+                                placeholder="Type patient name..."
+                                autocomplete="off"
+                                required
+                        >
+
+
+                        <datalist id="patientList"></datalist>
+
+                    </div>
+
+
+                    <!-- DENTIST -->
+
+                    <div class="form-group">
+
+                        <label for="dentist">
+
+                            Dentist
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                                type="text"
+                                id="dentist"
+                                list="dentistList"
+                                placeholder="Type dentist name..."
+                                autocomplete="off"
+                                required
+                        >
+
+
+                        <datalist id="dentistList"></datalist>
+
+                    </div>
+
+
+                    <!-- TREATMENT -->
+
+                    <div class="form-group">
+
+                        <label for="treatment">
+
+                            Treatment
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                                type="text"
+                                id="treatment"
+                                list="treatmentList"
+                                placeholder="Type treatment..."
+                                autocomplete="off"
+                                required
+                        >
+
+
+                        <datalist id="treatmentList">
+
+                            <option value="General Consultation"></option>
+
+                            <option value="Dental Cleaning"></option>
+
+                            <option value="Dental Filling"></option>
+
+                            <option value="Tooth Extraction"></option>
+
+                            <option value="Root Canal Treatment"></option>
+
+                            <option value="Teeth Whitening"></option>
+
+                            <option value="Dental Crown"></option>
+
+                            <option value="Dental Bridge"></option>
+
+                            <option value="Dental Implant"></option>
+
+                            <option value="Braces Consultation"></option>
+
+                            <option value="Denture"></option>
+
+                            <option value="Gum Treatment"></option>
+
+                            <option value="Oral Examination"></option>
+
+                        </datalist>
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="form-group">
+
+                        <label for="address">
+
+                            Address
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                                type="text"
+                                id="address"
+                                placeholder="Enter patient address"
+                                required
+                        >
+
+                    </div>
+
+
+                    <!-- CONTACT -->
+
+                    <div class="form-group">
+
+                        <label for="contactNumber">
+
+                            Contact Number
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                                type="tel"
+                                id="contactNumber"
+                                placeholder="0771234567"
+                                maxlength="10"
+                                pattern="[0-9]{10}"
+                                required
+                        >
+
+                    </div>
+
+
+                    <!-- DATE -->
+
+                    <div class="form-group">
+
+                        <label for="appointmentDate">
+
+                            Appointment Date
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                                type="date"
+                                id="appointmentDate"
+                                required
+                        >
+
+                    </div>
+
+
+                    <!-- TIME -->
+
+                    <div class="form-group">
+
+                        <label for="appointmentTime">
+
+                            Appointment Time
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                                type="time"
+                                id="appointmentTime"
+                                required
+                        >
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="form-group full">
+
+                        <label for="status">
+
+                            Status
+
+                        </label>
+
+
+                        <select id="status">
+
+                            <option value="Pending">
+                                Pending
+                            </option>
+
+                            <option value="Confirmed">
+                                Confirmed
+                            </option>
+
+                            <option value="Completed">
+                                Completed
+                            </option>
+
+                            <option value="Cancelled">
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+                <div id="message"></div>
+
+
+                <div class="button-area">
+
+
+                    <button
+                            type="submit"
+                            class="add-btn"
+                            id="addButton">
+
+                        + Add Appointment
+
+                    </button>
+
+
+                    <button
+                            type="reset"
+                            class="clear-btn">
+
+                        Clear
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+            <div style="text-align:center;">
+
+                <a
+                        href="appointments.html"
+                        class="back-link">
+
+                    ← Back to Appointments
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+    /* =====================================================
+       SHOW MESSAGE
+    ===================================================== */
+
+    function showMessage(text, type) {
+
+        const message =
+            document.getElementById("message");
+
+        message.innerText = text;
+
+        message.className = type;
+    }
+
+
+    /* =====================================================
+       GET ARRAY FROM RESPONSE
+    ===================================================== */
+
+    function getArray(data) {
+
+        if (Array.isArray(data)) {
+
+            return data;
+        }
+
+
+        if (
+            data &&
+            Array.isArray(data.data)
+        ) {
+
+            return data.data;
+        }
+
+
+        if (
+            data &&
+            Array.isArray(data.content)
+        ) {
+
+            return data.content;
+        }
+
+
+        if (
+            data &&
+            Array.isArray(data.items)
+        ) {
+
+            return data.items;
+        }
+
+
+        if (
+            data &&
+            Array.isArray(data.appointments)
+        ) {
+
+            return data.appointments;
+        }
+
+
+        if (
+            data &&
+            Array.isArray(data.patients)
+        ) {
+
+            return data.patients;
+        }
+
+
+        if (
+            data &&
+            Array.isArray(data.dentists)
+        ) {
+
+            return data.dentists;
+        }
+
+
+        return [];
+    }
+
+
+    /* =====================================================
+       APPOINTMENT NUMBER
+    ===================================================== */
+
+    async function generateAppointmentNumber() {
+
+        try {
+
+            const response =
+                await fetch("/appointments");
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Failed to load appointments"
+                );
+            }
+
+
+            const data =
+                await response.json();
+
+
+            const appointments =
+                getArray(data);
+
+
+            let maxNumber = 0;
+
+
+            appointments.forEach(
+                function(appointment) {
+
+                    const value =
+                        appointment.appointmentNumber ||
+                        appointment.number ||
+                        appointment.id;
+
+
+                    if (!value) {
+
+                        return;
+                    }
+
+
+                    const number =
+                        parseInt(
+                            String(value)
+                                .replace(/\D/g, ""),
+                            10
+                        );
+
+
+                    if (
+                        !isNaN(number) &&
+                        number > maxNumber
+                    ) {
+
+                        maxNumber = number;
+                    }
+
+                }
+            );
+
+
+            document.getElementById(
+                "appointmentNumber"
+            ).value =
+                "A" +
+                String(maxNumber + 1)
+                    .padStart(3, "0");
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Appointment number error:",
+                error
+            );
+
+
+            document.getElementById(
+                "appointmentNumber"
+            ).value = "A001";
+        }
+
+    }
+
+
+    /* =====================================================
+       PATIENT AUTO SUGGEST
+    ===================================================== */
+
+    async function loadPatients() {
+
+        try {
+
+            const response =
+                await fetch("/patients");
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Failed to load patients"
+                );
+            }
+
+
+            const data =
+                await response.json();
+
+
+            const patients =
+                getArray(data);
+
+
+            const list =
+                document.getElementById(
+                    "patientList"
+                );
+
+
+            list.innerHTML = "";
+
+
+            patients.forEach(
+                function(patient) {
+
+
+                    const name =
+                        patient.name ||
+                        patient.patientName ||
+                        patient.fullName ||
+                        patient.Name ||
+                        patient.PatientName;
+
+
+                    if (
+                        !name ||
+                        String(name).trim() === ""
+                    ) {
+
+                        return;
+                    }
+
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    option.value =
+                        String(name).trim();
+
+
+                    list.appendChild(option);
+
+                }
+            );
+
+
+            console.log(
+                "Patient suggestions:",
+                list.children.length
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Patient loading error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       DENTIST AUTO SUGGEST
+    ===================================================== */
+
+    async function loadDentists() {
+
+        try {
+
+            const response =
+                await fetch("/dentists");
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Failed to load dentists"
+                );
+            }
+
+
+            const data =
+                await response.json();
+
+
+            console.log(
+                "Dentists from backend:",
+                data
+            );
+
+
+            const dentists =
+                getArray(data);
+
+
+            const list =
+                document.getElementById(
+                    "dentistList"
+                );
+
+
+            list.innerHTML = "";
+
+
+            dentists.forEach(
+                function(dentist) {
+
+
+                    /*
+                     * ONLY database values.
+                     * No fixed dentist name.
+                     */
+
+                    const name =
+                        dentist.name ||
+                        dentist.dentistName ||
+                        dentist.fullName ||
+                        dentist.Name ||
+                        dentist.DentistName;
+
+
+                    if (
+                        !name ||
+                        String(name).trim() === ""
+                    ) {
+
+                        return;
+                    }
+
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    option.value =
+                        String(name).trim();
+
+
+                    list.appendChild(option);
+
+                }
+            );
+
+
+            console.log(
+                "Dentist suggestions:",
+                list.children.length
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Dentist loading error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SET MINIMUM DATE
+    ===================================================== */
+
+    const today =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+    document.getElementById(
+        "appointmentDate"
+    ).min = today;
+
+
+    /* =====================================================
+       SUBMIT APPOINTMENT
+    ===================================================== */
+
+    document
+        .getElementById("appointmentForm")
+        .addEventListener(
+            "submit",
+            async function(event) {
+
+
+                event.preventDefault();
+
+
+                const appointmentNumber =
+                    document
+                        .getElementById(
+                            "appointmentNumber"
+                        )
+                        .value.trim();
+
+
+                const patientName =
+                    document
+                        .getElementById(
+                            "patient"
+                        )
+                        .value.trim();
+
+
+                const address =
+                    document
+                        .getElementById(
+                            "address"
+                        )
+                        .value.trim();
+
+
+                const contactNumber =
+                    document
+                        .getElementById(
+                            "contactNumber"
+                        )
+                        .value.trim();
+
+
+                const dentistName =
+                    document
+                        .getElementById(
+                            "dentist"
+                        )
+                        .value.trim();
+
+
+                const treatmentType =
+                    document
+                        .getElementById(
+                            "treatment"
+                        )
+                        .value.trim();
+
+
+                const appointmentDate =
+                    document
+                        .getElementById(
+                            "appointmentDate"
+                        )
+                        .value;
+
+
+                const appointmentTime =
+                    document
+                        .getElementById(
+                            "appointmentTime"
+                        )
+                        .value;
+
+
+                const status =
+                    document
+                        .getElementById(
+                            "status"
+                        )
+                        .value;
+
+
+                /* ================= VALIDATION ================= */
+
+                if (
+                    appointmentNumber === "" ||
+                    patientName === "" ||
+                    address === "" ||
+                    contactNumber === "" ||
+                    dentistName === "" ||
+                    treatmentType === "" ||
+                    appointmentDate === "" ||
+                    appointmentTime === ""
+                ) {
+
+                    showMessage(
+                        "Please fill in all required fields.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    !/^[0-9]{10}$/.test(
+                        contactNumber
+                    )
+                ) {
+
+                    showMessage(
+                        "Contact number must contain exactly 10 digits.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /* ================= REQUEST ================= */
+
+                const appointment = {
+
+                    appointmentNumber:
+                    appointmentNumber,
+
+                    patientName:
+                    patientName,
+
+                    address:
+                    address,
+
+                    contactNumber:
+                    contactNumber,
+
+                    dentistName:
+                    dentistName,
+
+                    treatmentType:
+                    treatmentType,
+
+                    appointmentDate:
+                    appointmentDate,
+
+                    appointmentTime:
+                    appointmentTime,
+
+                    status:
+                    status
+                };
+
+
+                const button =
+                    document.getElementById(
+                        "addButton"
+                    );
+
+
+                button.disabled = true;
+
+                button.innerText =
+                    "Saving...";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/appointments",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        appointment
+                                    )
+                            }
+                        );
+
+
+                    if (!response.ok) {
+
+                        const errorText =
+                            await response.text();
+
+
+                        throw new Error(
+                            errorText ||
+                            "Failed to add appointment"
+                        );
+                    }
+
+
+                    await response.json();
+
+
+                    showMessage(
+                        "Appointment added successfully!",
+                        "success"
+                    );
+
+
+                    setTimeout(
+                        function() {
+
+                            window.location.href =
+                                "appointments.html";
+
+                        },
+                        800
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Save error:",
+                        error
+                    );
+
+
+                    showMessage(
+                        error.message ||
+                        "Failed to add appointment. Please try again.",
+                        "error"
+                    );
+
+
+                    button.disabled = false;
+
+                    button.innerText =
+                        "+ Add Appointment";
+                }
+
+            }
+        );
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    document
+        .getElementById("appointmentForm")
+        .addEventListener(
+            "reset",
+            function() {
+
+                setTimeout(
+                    function() {
+
+                        document.getElementById(
+                            "message"
+                        ).innerText = "";
+
+
+                        document.getElementById(
+                            "message"
+                        ).className = "";
+
+
+                        generateAppointmentNumber();
+
+                    },
+                    50
+                );
+
+            }
+        );
+
+
+    /* =====================================================
+       PAGE LOAD
+    ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            generateAppointmentNumber();
+
+            loadPatients();
+
+            loadDentists();
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

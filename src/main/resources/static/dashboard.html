@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sunrise Dental Clinic - Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #172a35;
+            color: #f1e8d5;
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 230px;
+            height: 100vh;
+            background: #12343b;
+            border-right: 1px solid #31545c;
+            padding: 18px 12px;
+            z-index: 10;
+            overflow-y: auto;
+        }
+
+        .logo {
+            text-align: center;
+            padding: 5px 5px 20px;
+            border-bottom: 1px solid #31545c;
+            margin-bottom: 15px;
+        }
+
+        .logo-icon {
+            font-size: 38px;
+            margin-bottom: 5px;
+        }
+
+        .logo h1 {
+            margin: 0;
+            color: #20b8b0;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .logo p {
+            margin: 4px 0 0;
+            color: #d9e4df;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+
+        /* MENU */
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 12px;
+            border-radius: 7px;
+            text-decoration: none;
+            color: #d3dfdd;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #1d4b53;
+            color: #20c5bd;
+        }
+
+        .menu a.active {
+            background: #20a9a4;
+            color: #102d35;
+            font-weight: bold;
+        }
+
+        .menu-icon {
+            width: 23px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+
+        /* SIDEBAR BOTTOM */
+
+        .sidebar-bottom {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 15px;
+            padding: 14px 8px;
+            text-align: center;
+            border-radius: 10px;
+            background: linear-gradient(
+                    145deg,
+                    #1d7778,
+                    #14565f
+            );
+            color: #f1e8d5;
+        }
+
+        .sidebar-bottom .tooth {
+            font-size: 32px;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-bottom h3 {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .sidebar-bottom p {
+            margin: 4px 0;
+            font-size: 12px;
+            color: #c8d9d5;
+        }
+
+        .sidebar-bottom small {
+            font-size: 11px;
+            color: #d7e4e0;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+            margin-left: 230px;
+            min-height: 100vh;
+            background: #172a35;
+        }
+
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+
+        .topbar {
+            height: 68px;
+            background: #1d3b46;
+            border-bottom: 1px solid #31545c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+        }
+
+        .hamburger {
+            font-size: 24px;
+            color: #d8e4e1;
+        }
+
+        .admin {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification {
+            position: relative;
+            font-size: 21px;
+            color: #dce8e5;
+        }
+
+        .notification-number {
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            background: #e74c3c;
+            color: white;
+            font-size: 9px;
+            padding: 2px 5px;
+            border-radius: 20px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-icon {
+            width: 38px;
+            height: 38px;
+            background: #20a9a4;
+            color: #102d35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .profile strong {
+            color: #f1e8d5;
+            font-size: 14px;
+        }
+
+        .profile small {
+            display: block;
+            color: #aebfbe;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content {
+            padding: 28px;
+        }
+
+
+        /* =====================================================
+           WELCOME
+        ===================================================== */
+
+        .welcome h2 {
+            margin: 0;
+            color: #f1e8d5;
+            font-size: 28px;
+        }
+
+        .welcome p {
+            margin-top: 7px;
+            color: #aebfbe;
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           STAT CARDS
+        ===================================================== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 24px;
+        }
+
+        .card {
+            background: #24434c;
+            border: 1px solid #365a62;
+            border-radius: 11px;
+            padding: 20px;
+            min-height: 130px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.16);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #20b8b0;
+        }
+
+        .card-icon {
+            width: 55px;
+            height: 55px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            background: #245f60;
+        }
+
+        .patients-icon {
+            background: #294f69;
+        }
+
+        .dentist-icon {
+            background: #55426c;
+        }
+
+        .bill-icon {
+            background: #675035;
+        }
+
+        .card h3 {
+            margin: 0 0 5px;
+            font-size: 30px;
+            line-height: 1;
+            color: #f1e8d5;
+        }
+
+        .card p {
+            margin: 0;
+            color: #c0cfcd;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .card a {
+            display: block;
+            margin-top: 7px;
+            color: #20c5bd;
+            font-size: 12px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            color: #62ddd7;
+        }
+
+
+        /* =====================================================
+           MIDDLE
+        ===================================================== */
+
+        .middle {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .panel {
+            background: #203b44;
+            border: 1px solid #365a62;
+            border-radius: 11px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.14);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .panel-header h3 {
+            margin: 0;
+            color: #f1e8d5;
+            font-size: 18px;
+        }
+
+        .panel-header span {
+            color: #aebfbe;
+            font-size: 12px;
+        }
+
+        .panel-header a {
+            color: #20c5bd;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           CHART
+        ===================================================== */
+
+        .chart {
+            height: 190px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            border-bottom: 1px solid #385860;
+            padding: 0 10px;
+        }
+
+        .bar-container {
+            height: 165px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            width: 45px;
+        }
+
+        .bar {
+            width: 25px;
+            background: linear-gradient(
+                    to top,
+                    #159e9b,
+                    #50d1ca
+            );
+            border-radius: 6px 6px 0 0;
+            min-height: 20px;
+            transition: height 0.4s ease;
+        }
+
+        .day {
+            margin-top: 8px;
+            color: #aebfbe;
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           UPCOMING APPOINTMENTS
+        ===================================================== */
+
+        .appointment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 0;
+            border-bottom: 1px solid #304e56;
+        }
+
+        .appointment-item:last-child {
+            border-bottom: none;
+        }
+
+        .appointment-date {
+            min-width: 68px;
+        }
+
+        .appointment-date strong {
+            color: #20c5bd;
+            font-size: 11px;
+        }
+
+        .appointment-info {
+            flex: 1;
+        }
+
+        .appointment-info strong {
+            display: block;
+            color: #f1e8d5;
+            font-size: 12px;
+        }
+
+        .appointment-info small {
+            display: block;
+            margin-top: 3px;
+            color: #9fb2b2;
+            font-size: 10px;
+        }
+
+        .status {
+            padding: 5px 8px;
+            border-radius: 15px;
+            font-size: 9px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .status-confirmed {
+            background: #1d594d;
+            color: #64e0b1;
+        }
+
+        .status-pending {
+            background: #5c492b;
+            color: #f5c66c;
+        }
+
+        .status-completed {
+            background: #244b35;
+            color: #78d895;
+        }
+
+        .status-cancelled {
+            background: #5a3030;
+            color: #ff9999;
+        }
+
+        .no-appointments {
+            text-align: center;
+            padding: 25px 10px;
+            color: #9fb2b2;
+            font-size: 13px;
+        }
+
+        .no-appointments p {
+            margin: 8px 0 0;
+        }
+
+
+        /* =====================================================
+           QUICK ACTIONS
+        ===================================================== */
+
+        .quick {
+            margin-top: 20px;
+        }
+
+        .quick h3 {
+            margin: 0 0 15px;
+            color: #f1e8d5;
+            font-size: 18px;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+        }
+
+        .quick-action {
+            min-height: 105px;
+            background: #24434c;
+            border: 1px solid #365a62;
+            border-radius: 9px;
+            text-decoration: none;
+            color: #e5eeeb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .quick-action:hover {
+            background: #28525a;
+            border-color: #20b8b0;
+            transform: translateY(-2px);
+        }
+
+        .quick-action span {
+            font-size: 27px;
+        }
+
+        .quick-action strong {
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           BOTTOM
+        ===================================================== */
+
+        .bottom {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .clinic-banner {
+            background: linear-gradient(
+                    110deg,
+                    #214b54,
+                    #1d4149
+            );
+            border: 1px solid #38646b;
+            border-radius: 11px;
+            min-height: 145px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .clinic-banner h2 {
+            margin: 0;
+            color: #54d6cf;
+            font-size: 24px;
+        }
+
+        .clinic-banner p {
+            margin: 7px 0;
+            color: #c0d0cd;
+            font-size: 13px;
+        }
+
+        .big-tooth {
+            font-size: 85px;
+            opacity: 0.17;
+        }
+
+
+        /* =====================================================
+           CLINIC INFORMATION
+        ===================================================== */
+
+        .clinic-info {
+            background: #203b44;
+            border: 1px solid #365a62;
+            border-radius: 11px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.14);
+        }
+
+        .clinic-info h3 {
+            margin: 0 0 16px;
+            color: #f1e8d5;
+            font-size: 18px;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 13px;
+        }
+
+        .info-icon {
+            width: 22px;
+            font-size: 17px;
+        }
+
+        .info-row strong {
+            display: block;
+            color: #dfe9e6;
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .info-row span {
+            color: #9fb2b2;
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1250px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+            }
+
+            .middle,
+            .bottom {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .content {
+                padding: 18px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .welcome h2 {
+                font-size: 24px;
+            }
+
+            .card {
+                min-height: 120px;
+            }
+
+            .card h3 {
+                font-size: 28px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🦷
+        </div>
+
+        <h1>
+            SUNRISE
+        </h1>
+
+        <p>
+            DENTAL CLINIC
+        </p>
+
+    </div>
+
+
+    <div class="menu">
+
+        <a href="dashboard.html"
+           class="active">
+
+            <span class="menu-icon">
+                ⌂
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="appointments.html">
+
+            <span class="menu-icon">
+                📅
+            </span>
+
+            Appointments
+
+        </a>
+
+
+        <a href="patients.html">
+
+            <span class="menu-icon">
+                👤
+            </span>
+
+            Patients
+
+        </a>
+
+
+        <a href="dentists.html">
+
+            <span class="menu-icon">
+                🧑‍⚕️
+            </span>
+
+            Dentists
+
+        </a>
+
+
+        <a href="services.html">
+
+            <span class="menu-icon">
+                🦷
+            </span>
+
+            Services
+
+        </a>
+
+
+        <a href="billing.html">
+
+            <span class="menu-icon">
+                🧾
+            </span>
+
+            Billing
+
+        </a>
+
+
+        <a href="reports.html">
+
+            <span class="menu-icon">
+                📊
+            </span>
+
+            Reports
+
+        </a>
+
+
+        <a href="notifications.html">
+
+            <span class="menu-icon">
+                🔔
+            </span>
+
+            Notifications
+
+        </a>
+
+
+        <a href="help.html">
+
+            <span class="menu-icon">
+                ❓
+            </span>
+
+            Help
+
+        </a>
+
+
+        <a href="settings.html">
+
+            <span class="menu-icon">
+                ⚙️
+            </span>
+
+            Settings
+
+        </a>
+
+
+        <a href="login.html">
+
+            <span class="menu-icon">
+                ↪
+            </span>
+
+            Logout
+
+        </a>
+
+    </div>
+
+
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div class="hamburger">
+            ☰
+        </div>
+
+
+        <div class="admin">
+
+            <div class="notification">
+
+                🔔
+
+                <span class="notification-number">
+                    3
+                </span>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong>
+                        Dr. Sunrise
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CONTENT
+    ================================================= -->
+
+    <div class="content">
+
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <h2>
+                Welcome, Dr. Sunrise 👋
+            </h2>
+
+            <p>
+                Here's what's happening with
+                Sunrise Dental Clinic today.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             STAT CARDS
+        ================================================= -->
+
+        <div class="cards">
+
+
+            <!-- APPOINTMENTS -->
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <h3 id="appointmentCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Appointments
+                    </p>
+
+                    <a href="appointments.html">
+                        View appointments →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PATIENTS -->
+
+            <div class="card">
+
+                <div class="card-icon patients-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <h3 id="patientCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Patients
+                    </p>
+
+                    <a href="patients.html">
+                        View patients →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- DENTISTS -->
+
+            <div class="card">
+
+                <div class="card-icon dentist-icon">
+                    🧑‍⚕️
+                </div>
+
+                <div>
+
+                    <h3 id="dentistCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Dentists
+                    </p>
+
+                    <a href="dentists.html">
+                        View dentists →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- BILLING -->
+
+            <div class="card">
+
+                <div class="card-icon bill-icon">
+                    🧾
+                </div>
+
+                <div>
+
+                    <h3 id="billCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Bills
+                    </p>
+
+                    <a href="billing.html">
+                        View billing →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             MIDDLE
+        ================================================= -->
+
+        <div class="middle">
+
+
+            <!-- APPOINTMENT CHART -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>
+                        Appointments Overview
+                    </h3>
+
+                    <span>
+                        This Week
+                    </span>
+
+                </div>
+
+
+                <div class="chart">
+
+
+                    <div class="bar-container">
+
+                        <div
+                                class="bar"
+                                id="barMon">
+                        </div>
+
+                        <div class="day">
+                            Mon
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div
+                                class="bar"
+                                id="barTue">
+                        </div>
+
+                        <div class="day">
+                            Tue
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div
+                                class="bar"
+                                id="barWed">
+                        </div>
+
+                        <div class="day">
+                            Wed
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div
+                                class="bar"
+                                id="barThu">
+                        </div>
+
+                        <div class="day">
+                            Thu
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div
+                                class="bar"
+                                id="barFri">
+                        </div>
+
+                        <div class="day">
+                            Fri
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div
+                                class="bar"
+                                id="barSat">
+                        </div>
+
+                        <div class="day">
+                            Sat
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-container">
+
+                        <div
+                                class="bar"
+                                id="barSun">
+                        </div>
+
+                        <div class="day">
+                            Sun
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- UPCOMING APPOINTMENTS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>
+                        Upcoming Appointments
+                    </h3>
+
+                    <a href="appointments.html">
+                        View all
+                    </a>
+
+                </div>
+
+
+                <div id="upcomingAppointments">
+
+                    <div class="no-appointments">
+                        Loading appointments...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================= -->
+
+        <div class="panel quick">
+
+            <h3>
+                Quick Actions
+            </h3>
+
+
+            <div class="quick-actions">
+
+
+                <a
+                        href="add-appointment.html"
+                        class="quick-action">
+
+                    <span>
+                        📅
+                    </span>
+
+                    <strong>
+                        New Appointment
+                    </strong>
+
+                </a>
+
+
+                <a
+                        href="add-patient.html"
+                        class="quick-action">
+
+                    <span>
+                        👤
+                    </span>
+
+                    <strong>
+                        Add Patient
+                    </strong>
+
+                </a>
+
+
+                <a
+                        href="dentists.html"
+                        class="quick-action">
+
+                    <span>
+                        🧑‍⚕️
+                    </span>
+
+                    <strong>
+                        Manage Dentists
+                    </strong>
+
+                </a>
+
+
+                <a
+                        href="appointments.html"
+                        class="quick-action">
+
+                    <span>
+                        🗓️
+                    </span>
+
+                    <strong>
+                        View Schedule
+                    </strong>
+
+                </a>
+
+
+                <a
+                        href="billing.html"
+                        class="quick-action">
+
+                    <span>
+                        🧾
+                    </span>
+
+                    <strong>
+                        Manage Billing
+                    </strong>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             BOTTOM
+        ================================================= -->
+
+        <div class="bottom">
+
+
+            <!-- CLINIC BANNER -->
+
+            <div class="clinic-banner">
+
+                <div>
+
+                    <h2>
+                        Sunrise Dental Clinic
+                    </h2>
+
+                    <p>
+                        Colombo, Sri Lanka
+                    </p>
+
+                    <p>
+                        Your Smile, Our Priority
+                    </p>
+
+                </div>
+
+
+                <div class="big-tooth">
+                    🦷
+                </div>
+
+            </div>
+
+
+            <!-- CLINIC INFORMATION -->
+
+            <div class="clinic-info">
+
+                <h3>
+                    Sunrise Clinic Information
+                </h3>
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Address
+                        </strong>
+
+                        <span>
+                            Colombo, Sri Lanka
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        📞
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Phone
+                        </strong>
+
+                        <span>
+                            +94 11 234 5678
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">
+                        ✉️
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Email
+                        </strong>
+
+                        <span>
+                            info@sunrisedental.lk
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       SAFE FETCH
+    ===================================================== */
+
+    async function fetchData(url) {
+
+        try {
+
+            const response =
+                await fetch(url);
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Request failed: " + url
+                );
+
+            }
+
+            return await response.json();
+
+        } catch (error) {
+
+            console.error(
+                "Dashboard fetch error:",
+                url,
+                error
+            );
+
+            return [];
+
+        }
+
+    }
+
+
+    /* =====================================================
+       GET ARRAY FROM BACKEND RESPONSE
+    ===================================================== */
+
+    function getArray(data) {
+
+        if (Array.isArray(data)) {
+            return data;
+        }
+
+        if (
+            data &&
+            Array.isArray(data.data)
+        ) {
+            return data.data;
+        }
+
+        if (
+            data &&
+            Array.isArray(data.content)
+        ) {
+            return data.content;
+        }
+
+        if (
+            data &&
+            Array.isArray(data.items)
+        ) {
+            return data.items;
+        }
+
+        return [];
+
+    }
+
+
+    /* =====================================================
+       LOAD DASHBOARD COUNTS
+    ===================================================== */
+
+    async function loadDashboardCounts() {
+
+        const [
+            appointmentsData,
+            patientsData,
+            dentistsData,
+            billsData
+        ] = await Promise.all([
+
+            fetchData("/appointments"),
+            fetchData("/patients"),
+            fetchData("/dentists"),
+            fetchData("/bills")
+
+        ]);
+
+
+        const appointments =
+            getArray(appointmentsData);
+
+        const patients =
+            getArray(patientsData);
+
+        const dentists =
+            getArray(dentistsData);
+
+        const bills =
+            getArray(billsData);
+
+
+        document.getElementById(
+            "appointmentCount"
+        ).innerText =
+            appointments.length;
+
+
+        document.getElementById(
+            "patientCount"
+        ).innerText =
+            patients.length;
+
+
+        document.getElementById(
+            "dentistCount"
+        ).innerText =
+            dentists.length;
+
+
+        document.getElementById(
+            "billCount"
+        ).innerText =
+            bills.length;
+
+
+        updateAppointmentChart(
+            appointments
+        );
+
+    }
+
+
+    /* =====================================================
+       UPCOMING APPOINTMENTS
+    ===================================================== */
+
+    async function loadUpcomingAppointments() {
+
+        const data =
+            await fetchData("/appointments");
+
+        const appointments =
+            getArray(data);
+
+        const container =
+            document.getElementById(
+                "upcomingAppointments"
+            );
+
+
+        if (
+            !appointments ||
+            appointments.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div class="no-appointments">
+
+                    <div style="font-size:38px;">
+                        📅
+                    </div>
+
+                    <p>
+                        No upcoming appointments
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        const today =
+            new Date();
+
+        today.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        /* SORT */
+
+        appointments.sort(
+            function(a, b) {
+
+                const dateA =
+                    new Date(
+                        `${a.appointmentDate}T${
+                            a.appointmentTime ||
+                            "00:00"
+                        }`
+                    );
+
+                const dateB =
+                    new Date(
+                        `${b.appointmentDate}T${
+                            b.appointmentTime ||
+                            "00:00"
+                        }`
+                    );
+
+                return dateA - dateB;
+
+            }
+        );
+
+
+        /* FILTER */
+
+        const upcoming =
+            appointments.filter(
+                function(appointment) {
+
+                    if (
+                        !appointment.appointmentDate
+                    ) {
+                        return false;
+                    }
+
+                    const appointmentDate =
+                        new Date(
+                            `${appointment.appointmentDate}T00:00:00`
+                        );
+
+                    return (
+                        appointmentDate >= today
+                    );
+
+                }
+            );
+
+
+        const display =
+            upcoming.slice(0, 5);
+
+
+        if (
+            display.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div class="no-appointments">
+
+                    <div style="font-size:38px;">
+                        📅
+                    </div>
+
+                    <p>
+                        No upcoming appointments
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            display.map(
+                function(appointment) {
+
+                    const date =
+                        formatDate(
+                            appointment.appointmentDate
+                        );
+
+                    const time =
+                        appointment.appointmentTime ||
+                        "Time not set";
+
+                    const status =
+                        appointment.status ||
+                        "Pending";
+
+                    const patient =
+                        appointment.patientName ||
+                        appointment.patient ||
+                        "Unknown Patient";
+
+                    const treatment =
+                        appointment.treatmentType ||
+                        appointment.treatment ||
+                        "Dental Treatment";
+
+                    const dentist =
+                        appointment.dentistName ||
+                        appointment.dentist ||
+                        "Dentist not assigned";
+
+
+                    return `
+
+                        <div class="appointment-item">
+
+                            <div class="appointment-date">
+
+                                <strong>
+                                    ${escapeHtml(date)}
+                                </strong>
+
+                            </div>
+
+
+                            <div class="appointment-info">
+
+                                <strong>
+                                    ${escapeHtml(patient)}
+                                </strong>
+
+                                <small>
+                                    🦷
+                                    ${escapeHtml(treatment)}
+                                </small>
+
+                                <small>
+                                    👨‍⚕️
+                                    ${escapeHtml(dentist)}
+                                </small>
+
+                                <small>
+                                    🕐
+                                    ${escapeHtml(time)}
+                                </small>
+
+                            </div>
+
+
+                            <span
+                                class="status ${getStatusClass(status)}">
+
+                                ${escapeHtml(status)}
+
+                            </span>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /* =====================================================
+       APPOINTMENT CHART
+    ===================================================== */
+
+    function updateAppointmentChart(
+        appointments
+    ) {
+
+        const days = {
+
+            Mon: 0,
+            Tue: 0,
+            Wed: 0,
+            Thu: 0,
+            Fri: 0,
+            Sat: 0,
+            Sun: 0
+
+        };
+
+
+        appointments.forEach(
+            function(appointment) {
+
+                if (
+                    !appointment.appointmentDate
+                ) {
+                    return;
+                }
+
+
+                const date =
+                    new Date(
+                        `${appointment.appointmentDate}T00:00:00`
+                    );
+
+
+                const day =
+                    date.toLocaleDateString(
+                        "en-US",
+                        {
+                            weekday: "short"
+                        }
+                    );
+
+
+                if (
+                    Object.prototype.hasOwnProperty
+                        .call(days, day)
+                ) {
+
+                    days[day]++;
+
+                }
+
+            }
+        );
+
+
+        const values =
+            Object.values(days);
+
+        const max =
+            Math.max(
+                ...values,
+                1
+            );
+
+
+        Object.keys(days).forEach(
+            function(day) {
+
+                const element =
+                    document.getElementById(
+                        "bar" + day
+                    );
+
+
+                if (!element) {
+                    return;
+                }
+
+
+                const height =
+                    Math.max(
+                        20,
+                        (
+                            days[day] /
+                            max
+                        ) * 140
+                    );
+
+
+                element.style.height =
+                    height + "px";
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       FORMAT DATE
+    ===================================================== */
+
+    function formatDate(
+        dateString
+    ) {
+
+        if (!dateString) {
+            return "";
+        }
+
+
+        const date =
+            new Date(
+                `${dateString}T00:00:00`
+            );
+
+
+        return date.toLocaleDateString(
+            "en-GB",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       STATUS CLASS
+    ===================================================== */
+
+    function getStatusClass(
+        status
+    ) {
+
+        const value =
+            String(status)
+                .toLowerCase();
+
+
+        if (
+            value === "confirmed"
+        ) {
+            return "status-confirmed";
+        }
+
+
+        if (
+            value === "completed"
+        ) {
+            return "status-completed";
+        }
+
+
+        if (
+            value === "cancelled"
+        ) {
+            return "status-cancelled";
+        }
+
+
+        return "status-pending";
+
+    }
+
+
+    /* =====================================================
+       HTML SECURITY
+    ===================================================== */
+
+    function escapeHtml(
+        value
+    ) {
+
+        return String(value)
+
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+
+            .replace(
+                /</g,
+                "&lt;"
+            )
+
+            .replace(
+                />/g,
+                "&gt;"
+            )
+
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    /* =====================================================
+       LOAD EVERYTHING
+    ===================================================== */
+
+    async function loadDashboard() {
+
+        await loadDashboardCounts();
+
+        await loadUpcomingAppointments();
+
+    }
+
+
+    /* =====================================================
+       PAGE LOAD
+    ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            loadDashboard();
+
+        }
+    );
+
+
+    /* =====================================================
+       AUTO REFRESH
+    ===================================================== */
+
+    setInterval(
+        function() {
+
+            loadDashboard();
+
+        },
+        30000
+    );
+
+</script>
+
+
+</body>
+
+</html>

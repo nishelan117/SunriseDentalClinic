@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Notifications - Sunrise Dental Clinic</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           BODY
+        ===================================================== */
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+
+            background: #172a35;
+
+            color: #f1e8d5;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            width: 240px;
+            height: 100vh;
+
+            background: #12343b;
+
+            border-right:
+                    1px solid #31545c;
+
+            padding:
+                    20px 13px;
+
+            z-index: 10;
+
+            overflow-y: auto;
+        }
+
+
+        /* =====================================================
+           SIDEBAR LOGO
+        ===================================================== */
+
+        .logo {
+
+            text-align: center;
+
+            padding:
+                    8px 5px 22px;
+
+            border-bottom:
+                    1px solid #31545c;
+
+            margin-bottom: 18px;
+        }
+
+
+        .logo-icon {
+
+            font-size: 40px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .logo h1 {
+
+            margin: 0;
+
+            color: #20b8b0;
+
+            font-size: 23px;
+
+            letter-spacing: 2px;
+        }
+
+
+        .logo p {
+
+            margin:
+                    5px 0 0;
+
+            color: #d9e4df;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =====================================================
+           SIDEBAR MENU
+        ===================================================== */
+
+        .menu {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .menu a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding:
+                    13px 14px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #d3dfdd;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .menu a:hover {
+
+            background: #1d4b53;
+
+            color: #20c5bd;
+        }
+
+
+        .menu a.active {
+
+            background: #20a9a4;
+
+            color: #102d35;
+
+            font-weight: bold;
+        }
+
+
+        .menu-icon {
+
+            width: 25px;
+
+            text-align: center;
+
+            font-size: 18px;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+
+            margin-left: 240px;
+
+            min-height: 100vh;
+
+            background: #172a35;
+        }
+
+
+        /* =====================================================
+           TOP BAR
+           CONNECTED TO SIDEBAR
+        ===================================================== */
+
+        .topbar {
+
+            height: 70px;
+
+            background: #1d3b46;
+
+            border-bottom:
+                    1px solid #31545c;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                    0 30px;
+        }
+
+
+        .page-title {
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            color: #f1e8d5;
+        }
+
+
+        /* =====================================================
+           PROFILE
+        ===================================================== */
+
+        .profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .profile-icon {
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #20a9a4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #102d35;
+
+            font-size: 18px;
+        }
+
+
+        .profile strong {
+
+            color: #f1e8d5;
+
+            font-size: 14px;
+        }
+
+
+        .profile small {
+
+            display: block;
+
+            color: #aebfbe;
+
+            font-size: 11px;
+
+            margin-top: 3px;
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content {
+
+            padding:
+                    30px;
+        }
+
+
+        /* =====================================================
+           PAGE HEADING
+        ===================================================== */
+
+        .heading {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+
+        .heading h1 {
+
+            margin: 0;
+
+            color: #f1e8d5;
+
+            font-size: 30px;
+
+            line-height: 1.2;
+        }
+
+
+        .heading p {
+
+            margin:
+                    7px 0 0;
+
+            color: #aebfbe;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           HEADER BUTTONS
+        ===================================================== */
+
+        .header-actions {
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+        }
+
+
+        .mark-read-btn,
+        .clear-btn {
+
+            border: none;
+
+            padding:
+                    12px 18px;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .mark-read-btn {
+
+            background: #28656d;
+
+            color: #58d6d0;
+        }
+
+
+        .mark-read-btn:hover {
+
+            background: #347982;
+        }
+
+
+        .clear-btn {
+
+            background: #b64040;
+
+            color: white;
+        }
+
+
+        .clear-btn:hover {
+
+            background: #cc4c4c;
+        }
+
+
+        /* =====================================================
+           NOTIFICATIONS PANEL
+        ===================================================== */
+
+        .notifications-panel {
+
+            background: #203b44;
+
+            border:
+                    1px solid #365a62;
+
+            border-radius: 12px;
+
+            padding:
+                    8px;
+
+            box-shadow:
+                    0 5px 15px
+                    rgba(0,0,0,0.18);
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           NOTIFICATION ITEM
+        ===================================================== */
+
+        .notification-item {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 18px;
+
+            padding:
+                    18px 16px;
+
+            border-bottom:
+                    1px solid #304e56;
+
+            position: relative;
+
+            transition:
+                    background 0.2s;
+        }
+
+
+        .notification-item:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .notification-item:hover {
+
+            background: #24434c;
+        }
+
+
+        /* =====================================================
+           UNREAD NOTIFICATION
+        ===================================================== */
+
+        .notification-item.unread {
+
+            background: #244b53;
+
+            border-left:
+                    4px solid #20c5bd;
+
+            padding-left: 12px;
+        }
+
+
+        .notification-item.unread:hover {
+
+            background: #28525a;
+        }
+
+
+        /* =====================================================
+           NOTIFICATION ICON
+        ===================================================== */
+
+        .notification-icon {
+
+            width: 50px;
+            height: 50px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            background: #245f60;
+        }
+
+
+        .appointment-icon {
+
+            background: #285f69;
+        }
+
+
+        .payment-icon {
+
+            background: #6a501c;
+        }
+
+
+        .patient-icon {
+
+            background: #295c52;
+        }
+
+
+        .system-icon {
+
+            background: #58406d;
+        }
+
+
+        /* =====================================================
+           NOTIFICATION CONTENT
+        ===================================================== */
+
+        .notification-content {
+
+            flex: 1;
+
+            min-width: 0;
+        }
+
+
+        .notification-content h3 {
+
+            margin:
+                    1px 0 7px;
+
+            color: #f1e8d5;
+
+            font-size: 18px;
+
+            font-weight: bold;
+        }
+
+
+        .notification-content p {
+
+            margin: 0 0 8px;
+
+            color: #c0cfcd;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        .notification-time {
+
+            color: #8fa9aa;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           UNREAD DOT
+        ===================================================== */
+
+        .unread-dot {
+
+            width: 13px;
+            height: 13px;
+
+            border-radius: 50%;
+
+            background: #20c5bd;
+
+            flex-shrink: 0;
+
+            margin-top: 10px;
+        }
+
+
+        /* =====================================================
+           EMPTY MESSAGE
+        ===================================================== */
+
+        .empty-message {
+
+            text-align: center;
+
+            padding:
+                    55px 20px;
+
+            color: #9fb2b2;
+
+            font-size: 15px;
+        }
+
+
+        .empty-message-icon {
+
+            font-size: 45px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        #message {
+
+            margin-top: 15px;
+
+            text-align: center;
+
+            color: #20c5bd;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .sidebar {
+
+                width: 220px;
+            }
+
+
+            .main {
+
+                margin-left: 220px;
+            }
+
+
+            .content {
+
+                padding: 25px;
+            }
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+
+                width: 200px;
+            }
+
+
+            .main {
+
+                margin-left: 200px;
+            }
+
+
+            .heading {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 18px;
+            }
+
+
+            .header-actions {
+
+                width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .sidebar {
+
+                display: none;
+            }
+
+
+            .main {
+
+                margin-left: 0;
+            }
+
+
+            .content {
+
+                padding: 18px;
+            }
+
+
+            .topbar {
+
+                padding:
+                        0 18px;
+            }
+
+
+            .page-title {
+
+                font-size: 19px;
+            }
+
+
+            .heading h1 {
+
+                font-size: 25px;
+            }
+
+
+            .header-actions {
+
+                width: 100%;
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .mark-read-btn,
+            .clear-btn {
+
+                width: 100%;
+            }
+
+
+            .notification-item {
+
+                gap: 12px;
+
+                padding:
+                        16px 10px;
+            }
+
+
+            .notification-icon {
+
+                width: 43px;
+                height: 43px;
+
+                font-size: 20px;
+            }
+
+
+            .notification-content h3 {
+
+                font-size: 16px;
+            }
+
+
+            .notification-content p {
+
+                font-size: 13px;
+            }
+
+
+            .notification-time {
+
+                font-size: 11px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🦷
+        </div>
+
+
+        <h1>
+            SUNRISE
+        </h1>
+
+
+        <p>
+            DENTAL CLINIC
+        </p>
+
+    </div>
+
+
+    <!-- MENU -->
+
+    <div class="menu">
+
+
+        <a href="dashboard.html">
+
+            <span class="menu-icon">
+                ⌂
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="appointments.html">
+
+            <span class="menu-icon">
+                📅
+            </span>
+
+            Appointments
+
+        </a>
+
+
+        <a href="patients.html">
+
+            <span class="menu-icon">
+                👤
+            </span>
+
+            Patients
+
+        </a>
+
+
+        <a href="dentists.html">
+
+            <span class="menu-icon">
+                🧑‍⚕️
+            </span>
+
+            Dentists
+
+        </a>
+
+
+        <a href="services.html">
+
+            <span class="menu-icon">
+                🦷
+            </span>
+
+            Services
+
+        </a>
+
+
+        <a href="billing.html">
+
+            <span class="menu-icon">
+                🧾
+            </span>
+
+            Billing
+
+        </a>
+
+
+        <a href="reports.html">
+
+            <span class="menu-icon">
+                📊
+            </span>
+
+            Reports
+
+        </a>
+
+
+        <a href="notifications.html"
+           class="active">
+
+            <span class="menu-icon">
+                🔔
+            </span>
+
+            Notifications
+
+        </a>
+
+
+        <a href="help.html">
+
+            <span class="menu-icon">
+                ❓
+            </span>
+
+            Help
+
+        </a>
+
+
+        <a href="login.html">
+
+            <span class="menu-icon">
+                ↪
+            </span>
+
+            Logout
+
+        </a>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="main">
+
+
+    <!-- =================================================
+         TOP BAR
+    ================================================= -->
+
+    <div class="topbar">
+
+
+        <div class="page-title">
+
+            Notifications
+
+        </div>
+
+
+        <div class="profile">
+
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Dr. Sunrise
+                </strong>
+
+
+                <small>
+                    Administrator
+                </small>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         CONTENT
+    ================================================= -->
+
+    <div class="content">
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="heading">
+
+
+            <div>
+
+                <h1>
+                    Notifications
+                </h1>
+
+
+                <p>
+                    Stay updated with Sunrise Dental Clinic activities and alerts
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+
+                <button
+                        class="mark-read-btn"
+                        onclick="markAllAsRead()">
+
+                    ✓ Mark All as Read
+
+                </button>
+
+
+                <button
+                        class="clear-btn"
+                        onclick="clearAllNotifications()">
+
+                    🗑 Clear All
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             NOTIFICATIONS
+        ================================================= -->
+
+        <div
+                class="notifications-panel"
+                id="notificationsPanel">
+
+
+            <!-- NEW APPOINTMENT -->
+
+            <div
+                    class="notification-item unread"
+                    data-id="1">
+
+
+                <div
+                        class="notification-icon appointment-icon">
+
+                    📅
+
+                </div>
+
+
+                <div class="notification-content">
+
+
+                    <h3>
+                        New Appointment
+                    </h3>
+
+
+                    <p>
+                        A new patient appointment has been scheduled successfully.
+                    </p>
+
+
+                    <span class="notification-time">
+                        Today, 09:30 AM
+                    </span>
+
+
+                </div>
+
+
+                <span class="unread-dot"></span>
+
+
+            </div>
+
+
+
+            <!-- PAYMENT RECEIVED -->
+
+            <div
+                    class="notification-item unread"
+                    data-id="2">
+
+
+                <div
+                        class="notification-icon payment-icon">
+
+                    💳
+
+                </div>
+
+
+                <div class="notification-content">
+
+
+                    <h3>
+                        Payment Received
+                    </h3>
+
+
+                    <p>
+                        A patient bill has been marked as paid successfully.
+                    </p>
+
+
+                    <span class="notification-time">
+                        Today, 10:15 AM
+                    </span>
+
+
+                </div>
+
+
+                <span class="unread-dot"></span>
+
+
+            </div>
+
+
+
+            <!-- NEW PATIENT -->
+
+            <div
+                    class="notification-item"
+                    data-id="3">
+
+
+                <div
+                        class="notification-icon patient-icon">
+
+                    👤
+
+                </div>
+
+
+                <div class="notification-content">
+
+
+                    <h3>
+                        New Patient Registered
+                    </h3>
+
+
+                    <p>
+                        A new patient has been added to the Sunrise Dental Clinic system.
+                    </p>
+
+
+                    <span class="notification-time">
+                        Yesterday, 03:20 PM
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SYSTEM UPDATE -->
+
+            <div
+                    class="notification-item"
+                    data-id="4">
+
+
+                <div
+                        class="notification-icon system-icon">
+
+                    ⚙️
+
+                </div>
+
+
+                <div class="notification-content">
+
+
+                    <h3>
+                        System Update
+                    </h3>
+
+
+                    <p>
+                        Sunrise Dental Clinic system information has been updated.
+                    </p>
+
+
+                    <span class="notification-time">
+                        Yesterday, 11:45 AM
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- MESSAGE -->
+
+        <p id="message"></p>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       MARK ALL AS READ
+    ===================================================== */
+
+    function markAllAsRead() {
+
+
+        const notifications =
+            document.querySelectorAll(
+                ".notification-item"
+            );
+
+
+        notifications.forEach(
+            function(notification) {
+
+
+                notification.classList.remove(
+                    "unread"
+                );
+
+
+                const dot =
+                    notification.querySelector(
+                        ".unread-dot"
+                    );
+
+
+                if (dot) {
+
+                    dot.remove();
+
+                }
+
+            }
+        );
+
+
+        document.getElementById(
+            "message"
+        ).innerText =
+            "All notifications marked as read.";
+
+
+        setTimeout(
+            function() {
+
+                document.getElementById(
+                    "message"
+                ).innerText = "";
+
+            },
+            2500
+        );
+
+    }
+
+
+
+    /* =====================================================
+       CLEAR ALL NOTIFICATIONS
+    ===================================================== */
+
+    function clearAllNotifications() {
+
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to clear all notifications?"
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+
+        const panel =
+            document.getElementById(
+                "notificationsPanel"
+            );
+
+
+        panel.innerHTML = `
+
+            <div class="empty-message">
+
+                <div class="empty-message-icon">
+                    🔔
+                </div>
+
+                <div>
+                    No notifications available.
+                </div>
+
+            </div>
+
+        `;
+
+
+        document.getElementById(
+            "message"
+        ).innerText =
+            "All notifications cleared.";
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+package com.sunrise.dentalclinic;
+
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/appointments")
+public class AppointmentController {
+
+    private final AppointmentRepository appointmentRepository;
+
+    public AppointmentController(
+            AppointmentRepository appointmentRepository) {
+
+        this.appointmentRepository =
+                appointmentRepository;
+    }
+
+
+    @GetMapping
+    public List<Appointment> getAllAppointments() {
+
+        return appointmentRepository.findAll();
+
+    }
+
+
+    @GetMapping("/{id}")
+    public Appointment getAppointment(
+            @PathVariable Long id) {
+
+        return appointmentRepository
+                .findById(id)
+                .orElse(null);
+
+    }
+
+
+    @GetMapping("/search")
+    public Appointment searchAppointment(
+            @RequestParam String appointmentNumber) {
+
+        return appointmentRepository
+                .findByAppointmentNumber(
+                        appointmentNumber
+                )
+                .orElse(null);
+
+    }
+
+
+    @PostMapping
+    public Appointment addAppointment(
+            @RequestBody Appointment appointment) {
+
+
+        // Automatically generate appointment number
+
+        long nextNumber =
+                appointmentRepository.count() + 1;
+
+
+        String appointmentNumber =
+                String.format(
+                        "A%03d",
+                        nextNumber
+                );
+
+
+        appointment.setAppointmentNumber(
+                appointmentNumber
+        );
+
+
+        return appointmentRepository.save(
+                appointment
+        );
+
+    }
+
+
+    @PutMapping("/{id}")
+    public Appointment updateAppointment(
+            @PathVariable Long id,
+            @RequestBody Appointment appointment) {
+
+
+        Appointment existingAppointment =
+                appointmentRepository
+                        .findById(id)
+                        .orElse(null);
+
+
+        if (existingAppointment == null) {
+
+            return null;
+
+        }
+
+
+        // Keep existing appointment number
+
+        existingAppointment.setPatientName(
+                appointment.getPatientName()
+        );
+
+
+        existingAppointment.setAddress(
+                appointment.getAddress()
+        );
+
+
+        existingAppointment.setContactNumber(
+                appointment.getContactNumber()
+        );
+
+
+        existingAppointment.setDentistName(
+                appointment.getDentistName()
+        );
+
+
+        existingAppointment.setTreatmentType(
+                appointment.getTreatmentType()
+        );
+
+
+        existingAppointment.setAppointmentDate(
+                appointment.getAppointmentDate()
+        );
+
+
+        existingAppointment.setAppointmentTime(
+                appointment.getAppointmentTime()
+        );
+
+
+        existingAppointment.setStatus(
+                appointment.getStatus()
+        );
+
+
+        return appointmentRepository.save(
+                existingAppointment
+        );
+
+    }
+
+
+    @DeleteMapping("/{id}")
+    public String deleteAppointment(
+            @PathVariable Long id) {
+
+
+        if (!appointmentRepository.existsById(id)) {
+
+            return "Appointment not found";
+
+        }
+
+
+        appointmentRepository.deleteById(id);
+
+
+        return "Appointment deleted successfully";
+
+    }
+
+}

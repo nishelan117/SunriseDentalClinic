@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Sunrise Dental Clinic</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+
+            margin: 0;
+            padding: 0;
+
+            width: 100%;
+            min-height: 100%;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            color: #f1e8d5;
+        }
+
+
+        /* ==========================================
+           BACKGROUND IMAGE
+        ========================================== */
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 25px;
+
+            background-image:
+
+                    linear-gradient(
+                            rgba(10, 38, 47, 0.68),
+                            rgba(10, 38, 47, 0.68)
+                    ),
+
+                    url("dental clinic.png");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            background-attachment: fixed;
+        }
+
+
+
+        /* ==========================================
+           LOGIN WRAPPER
+        ========================================== */
+
+        .login-wrapper {
+
+            width: 100%;
+
+            max-width: 480px;
+        }
+
+
+
+        /* ==========================================
+           LOGIN BOX
+        ========================================== */
+
+        .login-box {
+
+            width: 100%;
+
+            background:
+                    rgba(
+                            27,
+                            55,
+                            65,
+                            0.95
+                    );
+
+            border: 1px solid #477078;
+
+            border-radius: 16px;
+
+            padding: 42px;
+
+            box-shadow:
+                    0 15px 40px
+                    rgba(0, 0, 0, 0.45);
+
+            text-align: center;
+
+            backdrop-filter: blur(5px);
+        }
+
+
+
+        /* ==========================================
+           LOGO
+        ========================================== */
+
+        .logo-icon {
+
+            width: 78px;
+
+            height: 78px;
+
+            margin: 0 auto 16px;
+
+            border-radius: 50%;
+
+            background: #20a9a4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 42px;
+
+            box-shadow:
+                    0 5px 18px
+                    rgba(0, 0, 0, 0.25);
+        }
+
+
+
+        /* ==========================================
+           TITLE
+        ========================================== */
+
+        h1 {
+
+            margin: 0;
+
+            color: #20c5bd;
+
+            font-size: 34px;
+
+            letter-spacing: 3px;
+
+            font-weight: bold;
+        }
+
+
+        .clinic-name {
+
+            margin-top: 6px;
+
+            color: #f1e8d5;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+        }
+
+
+        .subtitle {
+
+            margin: 23px 0 30px;
+
+            color: #c0cecc;
+
+            font-size: 18px;
+        }
+
+
+
+        /* ==========================================
+           FORM
+        ========================================== */
+
+        form {
+
+            text-align: left;
+        }
+
+
+        .form-group {
+
+            margin-bottom: 23px;
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: #e0e9e7;
+
+            font-size: 17px;
+
+            font-weight: bold;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            height: 55px;
+
+            padding: 0 17px;
+
+            background: #12343e;
+
+            color: #f1e8d5;
+
+            border: 1px solid #4b6d74;
+
+            border-radius: 8px;
+
+            font-size: 17px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+
+        input::placeholder {
+
+            color: #8fa6a7;
+        }
+
+
+        input:focus {
+
+            border-color: #20c5bd;
+
+            box-shadow:
+                    0 0 0 3px
+                    rgba(
+                            32,
+                            197,
+                            189,
+                            0.15
+                    );
+        }
+
+
+
+        /* ==========================================
+           LOGIN BUTTON
+        ========================================== */
+
+        button {
+
+            width: 100%;
+
+            height: 55px;
+
+            margin-top: 8px;
+
+            background: #20a9a4;
+
+            color: #102d35;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+
+        button:hover {
+
+            background: #42cbc5;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                    0 6px 15px
+                    rgba(0, 0, 0, 0.25);
+        }
+
+
+        button:active {
+
+            transform: translateY(0);
+        }
+
+
+
+        /* ==========================================
+           MESSAGE
+        ========================================== */
+
+        #message {
+
+            min-height: 24px;
+
+            margin-top: 18px;
+
+            text-align: center;
+
+            font-size: 15px;
+
+            font-weight: bold;
+        }
+
+
+        .error {
+
+            color: #ff9292;
+        }
+
+
+        .success {
+
+            color: #56d8d0;
+        }
+
+
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        .footer {
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #3a5a62;
+
+            color: #9cafae;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        .footer strong {
+
+            color: #20c5bd;
+
+            font-size: 15px;
+        }
+
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 550px) {
+
+            body {
+
+                padding: 15px;
+
+            }
+
+
+            .login-box {
+
+                padding: 32px 24px;
+
+            }
+
+
+            h1 {
+
+                font-size: 28px;
+
+                letter-spacing: 2px;
+
+            }
+
+
+            .clinic-name {
+
+                font-size: 15px;
+
+            }
+
+
+            .logo-icon {
+
+                width: 68px;
+
+                height: 68px;
+
+                font-size: 35px;
+
+            }
+
+
+            input {
+
+                height: 52px;
+
+                font-size: 16px;
+
+            }
+
+
+            button {
+
+                height: 52px;
+
+                font-size: 17px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- ==========================================
+     LOGIN WRAPPER
+========================================== -->
+
+<div class="login-wrapper">
+
+
+    <div class="login-box">
+
+
+        <!-- LOGO -->
+
+        <div class="logo-icon">
+            🦷
+        </div>
+
+
+        <!-- CLINIC NAME -->
+
+        <h1>
+            SUNRISE
+        </h1>
+
+
+        <div class="clinic-name">
+            DENTAL CLINIC
+        </div>
+
+
+        <p class="subtitle">
+            Staff Login
+        </p>
+
+
+
+        <!-- LOGIN FORM -->
+
+        <form id="loginForm">
+
+
+            <!-- USERNAME -->
+
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+
+                <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required
+                >
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+
+                <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                >
+
+            </div>
+
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button type="submit">
+
+                Login
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- MESSAGE -->
+
+        <div id="message"></div>
+
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <strong>
+                Sunrise Dental Clinic
+            </strong>
+
+            <br>
+
+            Colombo, Sri Lanka
+
+            <br>
+
+            Creating Healthy Smiles
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+    /* ==========================================
+       LOGIN
+    ========================================== */
+
+    document
+        .getElementById("loginForm")
+        .addEventListener(
+            "submit",
+            function(event) {
+
+
+                event.preventDefault();
+
+
+                const message =
+                    document.getElementById(
+                        "message"
+                    );
+
+
+                message.innerText = "";
+
+                message.className = "";
+
+
+
+                const username =
+                    document
+                        .getElementById(
+                            "username"
+                        )
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById(
+                            "password"
+                        )
+                        .value;
+
+
+
+                /* USERNAME VALIDATION */
+
+                if (username === "") {
+
+                    showError(
+                        "Please enter your username."
+                    );
+
+                    return;
+                }
+
+
+
+                /* PASSWORD VALIDATION */
+
+                if (password === "") {
+
+                    showError(
+                        "Please enter your password."
+                    );
+
+                    return;
+                }
+
+
+
+                /* ======================================
+                   SEND DATA TO BACKEND
+                ====================================== */
+
+                fetch("/login", {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        username:
+                        username,
+
+                        password:
+                        password
+
+                    })
+
+                })
+
+
+                    .then(response => {
+
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Login request failed"
+                            );
+
+                        }
+
+
+                        return response.text();
+
+                    })
+
+
+                    .then(result => {
+
+
+                        if (
+                            result
+                                .trim()
+                                .toLowerCase()
+                            === "success"
+                        ) {
+
+
+                            message.innerText =
+                                "Login successful!";
+
+
+                            message.className =
+                                "success";
+
+
+                            setTimeout(
+                                function() {
+
+                                    window.location.href =
+                                        "dashboard.html";
+
+                                },
+                                500
+                            );
+
+
+                        }
+
+                        else {
+
+
+                            showError(
+                                "Invalid username or password."
+                            );
+
+                        }
+
+                    })
+
+
+                    .catch(error => {
+
+
+                        console.error(
+                            "Login error:",
+                            error
+                        );
+
+
+                        showError(
+                            "Login failed. Please try again."
+                        );
+
+                    });
+
+            }
+        );
+
+
+
+    /* ==========================================
+       ERROR MESSAGE
+    ========================================== */
+
+    function showError(text) {
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        message.innerText =
+            text;
+
+
+        message.className =
+            "error";
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

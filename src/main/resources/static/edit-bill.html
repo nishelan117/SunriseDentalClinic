@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Bill - Sunrise Dental Clinic</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #172a35;
+            color: #f1e8d5;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .container {
+            width: 650px;
+            max-width: 95%;
+
+            background: #203b44;
+
+            border: 1px solid #365a62;
+
+            border-radius: 14px;
+
+            padding: 35px 40px;
+
+            box-shadow:
+                    0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        .header {
+            text-align: center;
+
+            margin-bottom: 30px;
+
+            padding-bottom: 20px;
+
+            border-bottom: 1px solid #365a62;
+        }
+
+        .tooth {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            margin: 0;
+
+            color: #20b8b0;
+
+            font-size: 30px;
+
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            margin-top: 7px;
+
+            color: #aebfbe;
+
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #dfe9e6;
+
+            font-size: 15px;
+
+            font-weight: bold;
+        }
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            background: #172f38;
+
+            color: #f1e8d5;
+
+            border: 1px solid #45646b;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        input:focus,
+        select:focus {
+
+            border-color: #20b8b0;
+
+            box-shadow:
+                    0 0 0 2px
+                    rgba(32,184,176,0.15);
+        }
+
+        input[readonly] {
+
+            background: #1c4149;
+
+            color: #54d6cf;
+
+            font-weight: bold;
+
+            cursor: not-allowed;
+        }
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns:
+                    1fr 1fr;
+
+            gap: 18px;
+        }
+
+        .amount-box {
+
+            background: #24545b;
+
+            border: 1px solid #39747a;
+
+            border-radius: 8px;
+
+            padding: 15px;
+
+            margin-top: 5px;
+        }
+
+        .amount-box label {
+            color: #9fe3de;
+        }
+
+        #amount {
+
+            background: #173b42;
+
+            color: #54d6cf;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+        .buttons {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 28px;
+        }
+
+        button {
+
+            flex: 1;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .update-btn {
+
+            background: #20a9a4;
+
+            color: #102d35;
+        }
+
+        .update-btn:hover {
+
+            background: #20c5bd;
+
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+
+            background: #43565c;
+
+            color: #e5eeeb;
+        }
+
+        .back-btn:hover {
+            background: #536a70;
+        }
+
+        #message {
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            border-radius: 7px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            display: none;
+        }
+
+        .success {
+
+            display: block !important;
+
+            background: #1d594d;
+
+            color: #64e0b1;
+
+            border: 1px solid #287d69;
+        }
+
+        .error {
+
+            display: block !important;
+
+            background: #5a3030;
+
+            color: #ff9999;
+
+            border: 1px solid #7d4141;
+        }
+
+        .hint {
+
+            margin-top: 6px;
+
+            color: #8fa8a8;
+
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="tooth">
+            🦷
+        </div>
+
+        <h1>
+            Sunrise Dental Clinic
+        </h1>
+
+        <div class="subtitle">
+            Edit Bill
+        </div>
+
+    </div>
+
+
+
+    <form id="billForm">
+
+
+        <!-- APPOINTMENT -->
+
+        <div class="form-group">
+
+            <label for="appointmentSelect">
+                Appointment Number
+            </label>
+
+            <select
+                    id="appointmentSelect"
+                    required>
+
+                <option value="">
+                    Loading appointments...
+                </option>
+
+            </select>
+
+            <div class="hint">
+                Select an appointment. The appointment number and patient details are loaded automatically.
+            </div>
+
+        </div>
+
+
+
+        <!-- AUTO APPOINTMENT NUMBER -->
+
+        <div class="form-group">
+
+            <label for="appointmentNo">
+                Selected Appointment Number
+            </label>
+
+            <input
+                    type="text"
+                    id="appointmentNo"
+                    readonly
+            >
+
+        </div>
+
+
+
+        <!-- PATIENT -->
+
+        <div class="form-group">
+
+            <label for="patientName">
+                Patient Name
+            </label>
+
+            <input
+                    type="text"
+                    id="patientName"
+                    readonly
+            >
+
+        </div>
+
+
+
+        <!-- TREATMENT -->
+
+        <div class="form-group">
+
+            <label for="treatmentName">
+                Treatment Type
+            </label>
+
+            <input
+                    type="text"
+                    id="treatmentName"
+                    list="treatmentSuggestions"
+                    placeholder="Start typing treatment..."
+                    minlength="2"
+                    maxlength="100"
+                    required
+            >
+
+            <datalist id="treatmentSuggestions">
+
+                <option value="Dental Cleaning">
+                <option value="Dental Check-up">
+                <option value="Tooth Filling">
+                <option value="Root Canal Treatment">
+                <option value="Tooth Extraction">
+                <option value="Teeth Whitening">
+                <option value="Dental Crown">
+                <option value="Dental Bridge">
+                <option value="Braces">
+                <option value="Denture">
+                <option value="Oral Examination">
+
+            </datalist>
+
+            <div class="hint">
+                Start typing to see available treatment suggestions.
+            </div>
+
+        </div>
+
+
+
+        <!-- FEES -->
+
+        <div class="form-row">
+
+
+            <div class="form-group">
+
+                <label for="treatmentFee">
+                    Treatment Fee
+                </label>
+
+                <input
+                        type="number"
+                        id="treatmentFee"
+                        min="0"
+                        step="0.01"
+                        required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="consultationFee">
+                    Consultation Fee
+                </label>
+
+                <input
+                        type="number"
+                        id="consultationFee"
+                        min="0"
+                        step="0.01"
+                        required
+                >
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- TOTAL -->
+
+        <div class="form-group amount-box">
+
+            <label for="amount">
+                Total Amount
+            </label>
+
+            <input
+                    type="number"
+                    id="amount"
+                    readonly
+            >
+
+        </div>
+
+
+
+        <!-- PAYMENT STATUS -->
+
+        <div class="form-group">
+
+            <label for="paymentStatus">
+                Payment Status
+            </label>
+
+            <select
+                    id="paymentStatus"
+                    required>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="Paid">
+                    Paid
+                </option>
+
+                <option value="Unpaid">
+                    Unpaid
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- BILL DATE -->
+
+        <div class="form-group">
+
+            <label for="billDate">
+                Bill Date
+            </label>
+
+            <input
+                    type="date"
+                    id="billDate"
+                    required
+            >
+
+        </div>
+
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button
+                    type="submit"
+                    class="update-btn">
+
+                Update Bill
+
+            </button>
+
+
+            <button
+                    type="button"
+                    class="back-btn"
+                    onclick="window.location.href='billing.html'">
+
+                Back to Billing
+
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+
+    <div id="message"></div>
+
+
+</div>
+
+
+
+<script>
+
+
+    /* =====================================================
+       GET BILL ID
+    ===================================================== */
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const id =
+        params.get("id");
+
+
+    const message =
+        document.getElementById("message");
+
+
+    const appointmentSelect =
+        document.getElementById(
+            "appointmentSelect"
+        );
+
+
+
+    /* =====================================================
+       MESSAGE
+    ===================================================== */
+
+    function showSuccess(text) {
+
+        message.innerText = text;
+
+        message.className =
+            "success";
+
+    }
+
+
+    function showError(text) {
+
+        message.innerText = text;
+
+        message.className =
+            "error";
+
+    }
+
+
+
+    /* =====================================================
+       CALCULATE TOTAL
+    ===================================================== */
+
+    function calculateAmount() {
+
+        const treatmentFee =
+            parseFloat(
+                document.getElementById(
+                    "treatmentFee"
+                ).value
+            ) || 0;
+
+
+        const consultationFee =
+            parseFloat(
+                document.getElementById(
+                    "consultationFee"
+                ).value
+            ) || 0;
+
+
+        const total =
+            treatmentFee +
+            consultationFee;
+
+
+        document.getElementById(
+            "amount"
+        ).value =
+            total.toFixed(2);
+
+    }
+
+
+    document.getElementById(
+        "treatmentFee"
+    ).addEventListener(
+        "input",
+        calculateAmount
+    );
+
+
+    document.getElementById(
+        "consultationFee"
+    ).addEventListener(
+        "input",
+        calculateAmount
+    );
+
+
+
+    /* =====================================================
+       LOAD APPOINTMENTS
+    ===================================================== */
+
+    async function loadAppointments() {
+
+        try {
+
+            const response =
+                await fetch(
+                    "/appointments"
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Failed to load appointments"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            const appointments =
+                Array.isArray(data)
+                    ? data
+                    : (
+                        data.data ||
+                        data.content ||
+                        data.items ||
+                        []
+                    );
+
+
+            appointmentSelect.innerHTML =
+                `
+                <option value="">
+                    Select an appointment
+                </option>
+                `;
+
+
+            appointments.forEach(
+                function(appointment) {
+
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    /*
+                     * Support different possible
+                     * appointment number field names
+                     */
+
+                    const appointmentNo =
+                        appointment.appointmentNo ||
+                        appointment.appointmentNumber ||
+                        appointment.id;
+
+
+                    const patientName =
+                        appointment.patientName ||
+                        appointment.patient ||
+                        "Unknown Patient";
+
+
+                    option.value =
+                        appointmentNo;
+
+
+                    option.dataset.patient =
+                        patientName;
+
+
+                    option.dataset.appointment =
+                        JSON.stringify(
+                            appointment
+                        );
+
+
+                    option.textContent =
+                        appointmentNo +
+                        " - " +
+                        patientName;
+
+
+                    appointmentSelect.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+
+            /*
+             * After appointments are loaded,
+             * load the existing bill.
+             */
+
+            loadBill();
+
+
+        }
+
+        catch(error) {
+
+            console.error(
+                "Appointment loading error:",
+                error
+            );
+
+
+            appointmentSelect.innerHTML =
+                `
+                <option value="">
+                    Failed to load appointments
+                </option>
+                `;
+
+
+            showError(
+                "Failed to load appointments."
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       APPOINTMENT SELECT
+    ===================================================== */
+
+    appointmentSelect.addEventListener(
+        "change",
+        function() {
+
+
+            const selectedOption =
+                appointmentSelect
+                    .options[
+                    appointmentSelect.selectedIndex
+                    ];
+
+
+            if (!selectedOption) {
+                return;
+            }
+
+
+            const appointmentNo =
+                selectedOption.value;
+
+
+            const patientName =
+                selectedOption.dataset.patient ||
+                "";
+
+
+            document.getElementById(
+                "appointmentNo"
+            ).value =
+                appointmentNo;
+
+
+            document.getElementById(
+                "patientName"
+            ).value =
+                patientName;
+
+        }
+    );
+
+
+
+    /* =====================================================
+       LOAD TREATMENT SUGGESTIONS FROM SERVICES
+       ===================================================== */
+
+    async function loadTreatmentSuggestions() {
+
+        try {
+
+            const response =
+                await fetch(
+                    "/services"
+                );
+
+
+            if (!response.ok) {
+                return;
+            }
+
+
+            const data =
+                await response.json();
+
+
+            const services =
+                Array.isArray(data)
+                    ? data
+                    : (
+                        data.data ||
+                        data.content ||
+                        data.items ||
+                        []
+                    );
+
+
+            const datalist =
+                document.getElementById(
+                    "treatmentSuggestions"
+                );
+
+
+            services.forEach(
+                function(service) {
+
+
+                    const name =
+                        service.name ||
+                        service.serviceName ||
+                        service.treatmentName;
+
+
+                    if (!name) {
+                        return;
+                    }
+
+
+                    /*
+                     * Avoid duplicate suggestions
+                     */
+
+                    const alreadyExists =
+                        Array.from(
+                            datalist.options
+                        ).some(
+                            function(option) {
+
+                                return (
+                                    option.value
+                                        .toLowerCase() ===
+                                    name.toLowerCase()
+                                );
+
+                            }
+                        );
+
+
+                    if (!alreadyExists) {
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+                        option.value =
+                            name;
+
+                        datalist.appendChild(
+                            option
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+        catch(error) {
+
+            console.log(
+                "Could not load services:",
+                error
+            );
+
+            /*
+             * Static suggestions remain available.
+             */
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       LOAD EXISTING BILL
+    ===================================================== */
+
+    async function loadBill() {
+
+        if (!id) {
+
+            showError(
+                "Bill ID not found."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/bills/" + id
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Bill not found"
+                );
+
+            }
+
+
+            const bill =
+                await response.json();
+
+
+            /*
+             * Appointment number
+             */
+
+            const billAppointmentNo =
+                bill.appointmentNo ||
+                bill.appointmentNumber ||
+                bill.appointmentId ||
+                "";
+
+
+            /*
+             * Find appointment in dropdown
+             */
+
+            let found =
+                false;
+
+
+            Array.from(
+                appointmentSelect.options
+            ).forEach(
+                function(option) {
+
+
+                    if (
+                        String(option.value) ===
+                        String(billAppointmentNo)
+                    ) {
+
+                        appointmentSelect.value =
+                            option.value;
+
+                        found = true;
+
+
+                        document.getElementById(
+                            "appointmentNo"
+                        ).value =
+                            option.value;
+
+
+                        document.getElementById(
+                            "patientName"
+                        ).value =
+                            option.dataset.patient ||
+                            bill.patientName ||
+                            bill.patient ||
+                            "";
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * If appointment isn't found,
+             * still display existing value.
+             */
+
+            if (!found) {
+
+                document.getElementById(
+                    "appointmentNo"
+                ).value =
+                    billAppointmentNo;
+
+
+                document.getElementById(
+                    "patientName"
+                ).value =
+                    bill.patientName ||
+                    bill.patient ||
+                    "";
+
+            }
+
+
+
+            /* PATIENT */
+
+            if (
+                !document.getElementById(
+                    "patientName"
+                ).value
+            ) {
+
+                document.getElementById(
+                    "patientName"
+                ).value =
+                    bill.patientName ||
+                    bill.patient ||
+                    "";
+
+            }
+
+
+
+            /* TREATMENT */
+
+            document.getElementById(
+                "treatmentName"
+            ).value =
+                bill.treatmentName ||
+                bill.treatmentType ||
+                bill.treatment ||
+                "";
+
+
+
+            /* FEES */
+
+            document.getElementById(
+                "treatmentFee"
+            ).value =
+                bill.treatmentFee ||
+                0;
+
+
+            document.getElementById(
+                "consultationFee"
+            ).value =
+                bill.consultationFee ||
+                0;
+
+
+
+            /* TOTAL */
+
+            calculateAmount();
+
+
+
+            /* PAYMENT STATUS */
+
+            document.getElementById(
+                "paymentStatus"
+            ).value =
+                bill.paymentStatus ||
+                bill.status ||
+                "Pending";
+
+
+
+            /* DATE */
+
+            document.getElementById(
+                "billDate"
+            ).value =
+                bill.billDate ||
+                "";
+
+        }
+
+        catch(error) {
+
+            console.error(
+                "Error loading bill:",
+                error
+            );
+
+
+            showError(
+                "Failed to load bill details."
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       UPDATE BILL
+    ===================================================== */
+
+    document.getElementById(
+        "billForm"
+    ).addEventListener(
+        "submit",
+        async function(event) {
+
+
+            event.preventDefault();
+
+
+            message.innerText = "";
+
+            message.className = "";
+
+
+
+            const appointmentNo =
+                document.getElementById(
+                    "appointmentNo"
+                ).value.trim();
+
+
+            const patientName =
+                document.getElementById(
+                    "patientName"
+                ).value.trim();
+
+
+            const treatmentName =
+                document.getElementById(
+                    "treatmentName"
+                ).value.trim();
+
+
+            const treatmentFee =
+                parseFloat(
+                    document.getElementById(
+                        "treatmentFee"
+                    ).value
+                );
+
+
+            const consultationFee =
+                parseFloat(
+                    document.getElementById(
+                        "consultationFee"
+                    ).value
+                );
+
+
+            const amount =
+                treatmentFee +
+                consultationFee;
+
+
+            const paymentStatus =
+                document.getElementById(
+                    "paymentStatus"
+                ).value;
+
+
+            const billDate =
+                document.getElementById(
+                    "billDate"
+                ).value;
+
+
+
+            /* VALIDATION */
+
+            if (!appointmentNo) {
+
+                showError(
+                    "Please select an appointment."
+                );
+
+                return;
+
+            }
+
+
+            if (!patientName) {
+
+                showError(
+                    "Patient name is required."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                treatmentName.length < 2
+            ) {
+
+                showError(
+                    "Please enter a valid treatment type."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                isNaN(treatmentFee) ||
+                treatmentFee < 0
+            ) {
+
+                showError(
+                    "Please enter a valid treatment fee."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                isNaN(consultationFee) ||
+                consultationFee < 0
+            ) {
+
+                showError(
+                    "Please enter a valid consultation fee."
+                );
+
+                return;
+
+            }
+
+
+            if (!billDate) {
+
+                showError(
+                    "Please select bill date."
+                );
+
+                return;
+
+            }
+
+
+
+            /* =================================================
+               BILL OBJECT
+            ================================================= */
+
+            const bill = {
+
+                appointmentNo:
+                appointmentNo,
+
+                patientName:
+                patientName,
+
+                treatmentName:
+                treatmentName,
+
+                treatmentFee:
+                treatmentFee,
+
+                consultationFee:
+                consultationFee,
+
+                amount:
+                amount,
+
+                paymentStatus:
+                paymentStatus,
+
+                billDate:
+                billDate
+
+            };
+
+
+
+            /* =================================================
+               PUT REQUEST
+            ================================================= */
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/bills/" + id,
+                        {
+
+                            method: "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    bill
+                                )
+
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Update failed"
+                    );
+
+                }
+
+
+                showSuccess(
+                    "Bill updated successfully!"
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "billing.html";
+
+                    },
+                    1000
+                );
+
+            }
+
+            catch(error) {
+
+                console.error(
+                    "Error updating bill:",
+                    error
+                );
+
+
+                showError(
+                    "Failed to update bill. Please try again."
+                );
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       PAGE LOAD
+    ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            loadTreatmentSuggestions();
+
+            loadAppointments();
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

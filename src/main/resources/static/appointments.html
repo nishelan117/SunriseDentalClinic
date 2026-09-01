@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Appointments - Sunrise Dental Clinic</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #172a35;
+            color: #f1e8d5;
+            font-size: 16px;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 240px;
+            height: 100vh;
+
+            background: #12343b;
+
+            border-right: 1px solid #31545c;
+
+            padding: 20px 13px;
+
+            z-index: 10;
+
+            overflow-y: auto;
+        }
+
+
+        /* ================= LOGO ================= */
+
+        .logo {
+            text-align: center;
+
+            padding: 8px 5px 22px;
+
+            border-bottom: 1px solid #31545c;
+
+            margin-bottom: 18px;
+        }
+
+        .logo-icon {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .logo h1 {
+            margin: 0;
+
+            color: #20b8b0;
+
+            font-size: 22px;
+
+            letter-spacing: 2px;
+        }
+
+        .logo p {
+            margin: 5px 0 0;
+
+            color: #d9e4df;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* ================= MENU ================= */
+
+        .menu {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+        .menu a {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px 14px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #d3dfdd;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #1d4b53;
+
+            color: #20c5bd;
+        }
+
+        .menu a.active {
+            background: #20a9a4;
+
+            color: #102d35;
+
+            font-weight: bold;
+        }
+
+        .menu-icon {
+            width: 24px;
+
+            text-align: center;
+
+            font-size: 17px;
+
+            flex-shrink: 0;
+        }
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+            margin-left: 240px;
+            min-height: 100vh;
+            background: #172a35;
+        }
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+
+        .topbar {
+            height: 70px;
+            background: #1d3b46;
+            border-bottom: 1px solid #31545c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .page-title {
+            font-size: 23px;
+            font-weight: bold;
+            color: #f1e8d5;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-icon {
+            width: 43px;
+            height: 43px;
+            background: #20a9a4;
+            color: #102d35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .profile strong {
+            color: #f1e8d5;
+            font-size: 15px;
+        }
+
+        .profile small {
+            display: block;
+            color: #aebfbe;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content {
+            padding: 32px;
+        }
+
+        /* =====================================================
+           HEADING
+        ===================================================== */
+
+        .heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .heading h1 {
+            margin: 0;
+            font-size: 30px;
+            color: #f1e8d5;
+        }
+
+        .heading p {
+            margin: 8px 0 0;
+            color: #aebfbe;
+            font-size: 15px;
+        }
+
+        /* =====================================================
+           ADD BUTTON
+        ===================================================== */
+
+        .add-button {
+            background: #20a9a4;
+            color: #102d35;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .add-button:hover {
+            background: #42cbc5;
+        }
+
+        /* =====================================================
+           TABLE PANEL
+        ===================================================== */
+
+        .table-panel {
+            background: #203b44;
+            border: 1px solid #365a62;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            background: #28515a;
+            color: #dce8e5;
+            padding: 15px 12px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: bold;
+            border-bottom: 2px solid #20a9a4;
+        }
+
+        td {
+            padding: 14px 12px;
+            color: #d8e3e0;
+            font-size: 13px;
+            border-bottom: 1px solid #304e56;
+        }
+
+        tr:hover {
+            background: #264750;
+        }
+
+        /* =====================================================
+           APPOINTMENT NUMBER
+        ===================================================== */
+
+        .appointment-number {
+            color: #20c5bd;
+            font-weight: bold;
+        }
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .confirmed {
+            background: #1d594d;
+            color: #64e0b1;
+        }
+
+        .pending {
+            background: #5c492b;
+            color: #f5c66c;
+        }
+
+        .cancelled {
+            background: #5b3034;
+            color: #f38b8b;
+        }
+
+        .completed {
+            background: #294f69;
+            color: #83c8f4;
+        }
+
+        /* =====================================================
+           ACTION BUTTONS
+        ===================================================== */
+
+        .edit-btn,
+        .delete-btn {
+            border: none;
+            padding: 7px 11px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .edit-btn {
+            background: #b87922;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background: #d49331;
+        }
+
+        .delete-btn {
+            background: #b33d3d;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .delete-btn:hover {
+            background: #d24d4d;
+        }
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        #message {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #20c5bd;
+        }
+
+        /* =====================================================
+           BACK BUTTON
+        ===================================================== */
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 17px;
+            background: #31515a;
+            color: #dce8e5;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: #3c626b;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1250px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main {
+                margin-left: 220px;
+            }
+
+            .content {
+                padding: 28px;
+            }
+
+            .menu a {
+                font-size: 16px;
+                padding: 14px;
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+            }
+
+            .heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .heading h1 {
+                font-size: 27px;
+            }
+
+            .topbar {
+                padding: 0 20px;
+            }
+
+            .page-title {
+                font-size: 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🦷
+        </div>
+
+        <h1>
+            SUNRISE
+        </h1>
+
+        <p>
+            DENTAL CLINIC
+        </p>
+
+    </div>
+
+    <div class="menu">
+
+        <a href="dashboard.html">
+
+            <span class="menu-icon">
+                ⌂
+            </span>
+
+            Dashboard
+
+        </a>
+
+        <a href="appointments.html"
+           class="active">
+
+            <span class="menu-icon">
+                📅
+            </span>
+
+            Appointments
+
+        </a>
+
+        <a href="patients.html">
+
+            <span class="menu-icon">
+                👤
+            </span>
+
+            Patients
+
+        </a>
+
+        <a href="dentists.html">
+
+            <span class="menu-icon">
+                🧑‍⚕️
+            </span>
+
+            Dentists
+
+        </a>
+
+        <a href="services.html">
+
+            <span class="menu-icon">
+                🦷
+            </span>
+
+            Services
+
+        </a>
+
+        <a href="billing.html">
+
+            <span class="menu-icon">
+                🧾
+            </span>
+
+            Billing
+
+        </a>
+
+        <a href="reports.html">
+
+            <span class="menu-icon">
+                📊
+            </span>
+
+            Reports
+
+        </a>
+
+        <a href="notifications.html">
+
+            <span class="menu-icon">
+                🔔
+            </span>
+
+            Notifications
+
+        </a>
+
+        <a href="help.html">
+
+            <span class="menu-icon">
+                ❓
+            </span>
+
+            Help
+
+        </a>
+
+        <a href="settings.html">
+
+            <span class="menu-icon">
+                ⚙️
+            </span>
+
+            Settings
+
+        </a>
+
+        <a href="login.html">
+
+            <span class="menu-icon">
+                ↪
+            </span>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div class="page-title">
+            Appointment Management
+        </div>
+
+        <div class="profile">
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+            <div>
+
+                <strong>
+                    Dr. Sunrise
+                </strong>
+
+                <small>
+                    Administrator
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =================================================
+         CONTENT
+    ================================================= -->
+
+    <div class="content">
+
+        <div class="heading">
+
+            <div>
+
+                <h1>
+                    Appointments
+                </h1>
+
+                <p>
+                    Manage Sunrise Dental Clinic appointments
+                </p>
+
+            </div>
+
+            <a href="add-appointment.html"
+               class="add-button">
+
+                + Add New Appointment
+
+            </a>
+
+        </div>
+
+        <!-- =================================================
+             TABLE
+        ================================================= -->
+
+        <div class="table-panel">
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>
+                        Appointment No.
+                    </th>
+
+                    <th>
+                        Patient
+                    </th>
+
+                    <th>
+                        Contact
+                    </th>
+
+                    <th>
+                        Dentist
+                    </th>
+
+                    <th>
+                        Treatment
+                    </th>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Time
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Actions
+                    </th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="appointmentTableBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p id="message"></p>
+
+        <a href="dashboard.html"
+           class="back-button">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    /* =====================================================
+       LOAD APPOINTMENTS
+    ===================================================== */
+
+    function loadAppointments() {
+
+        fetch("/appointments")
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to load appointments"
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(appointments => {
+
+                const tableBody =
+                    document.getElementById(
+                        "appointmentTableBody"
+                    );
+
+                tableBody.innerHTML = "";
+
+                if (
+                    !Array.isArray(appointments) ||
+                    appointments.length === 0
+                ) {
+
+                    tableBody.innerHTML = `
+
+                        <tr>
+
+                            <td
+                                colspan="9"
+                                style="
+                                    text-align:center;
+                                    padding:35px;
+                                    color:#9fb2b2;
+                                "
+                            >
+
+                                No appointments found.
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                    return;
+                }
+
+                appointments.forEach(
+                    appointment => {
+
+                        const row =
+                            document.createElement("tr");
+
+                        /* ================= STATUS ================= */
+
+                        let statusClass = "pending";
+
+                        const currentStatus =
+                            String(
+                                appointment.status || ""
+                            ).toLowerCase();
+
+                        if (
+                            currentStatus ===
+                            "confirmed"
+                        ) {
+
+                            statusClass =
+                                "confirmed";
+
+                        } else if (
+                            currentStatus ===
+                            "cancelled"
+                        ) {
+
+                            statusClass =
+                                "cancelled";
+
+                        } else if (
+                            currentStatus ===
+                            "completed"
+                        ) {
+
+                            statusClass =
+                                "completed";
+
+                        }
+
+                        /* ================= ROW ================= */
+
+                        row.innerHTML = `
+
+                            <td>
+
+                                <span
+                                    class="appointment-number"
+                                >
+
+                                    ${
+                            appointment.appointmentNumber ||
+                            "-"
+                        }
+
+                                </span>
+
+                            </td>
+
+                            <td>
+                                ${
+                            appointment.patientName ||
+                            "-"
+                        }
+                            </td>
+
+                            <td>
+                                ${
+                            appointment.contactNumber ||
+                            "-"
+                        }
+                            </td>
+
+                            <td>
+                                ${
+                            appointment.dentistName ||
+                            "-"
+                        }
+                            </td>
+
+                            <td>
+                                ${
+                            appointment.treatmentType ||
+                            "-"
+                        }
+                            </td>
+
+                            <td>
+                                ${
+                            appointment.appointmentDate ||
+                            "-"
+                        }
+                            </td>
+
+                            <td>
+                                ${
+                            appointment.appointmentTime ||
+                            "-"
+                        }
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="status ${statusClass}"
+                                >
+
+                                    ${
+                            appointment.status ||
+                            "Pending"
+                        }
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="edit-btn"
+                                    onclick="editAppointment(
+                                        ${appointment.id}
+                                    )"
+                                >
+
+                                    Edit
+
+                                </button>
+
+                                <button
+                                    class="delete-btn"
+                                    onclick="deleteAppointment(
+                                        ${appointment.id}
+                                    )"
+                                >
+
+                                    Delete
+
+                                </button>
+
+                            </td>
+
+                        `;
+
+                        tableBody.appendChild(row);
+
+                    }
+                );
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
+
+                document.getElementById(
+                    "message"
+                ).innerText =
+                    "Unable to load appointments.";
+
+            });
+
+    }
+
+    /* =====================================================
+       EDIT APPOINTMENT
+    ===================================================== */
+
+    function editAppointment(id) {
+
+        window.location.href =
+            "edit-appointment.html?id=" + id;
+
+    }
+
+    /* =====================================================
+       DELETE APPOINTMENT
+    ===================================================== */
+
+    function deleteAppointment(id) {
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to delete this appointment?"
+            );
+
+        if (!confirmed) {
+            return;
+        }
+
+        fetch(
+            "/appointments/" + id,
+            {
+                method: "DELETE"
+            }
+        )
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Delete failed"
+                    );
+
+                }
+
+                return response.text();
+
+            })
+
+            .then(message => {
+
+                document.getElementById(
+                    "message"
+                ).innerText =
+                    message;
+
+                loadAppointments();
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
+
+                document.getElementById(
+                    "message"
+                ).innerText =
+                    "Error deleting appointment.";
+
+            });
+
+    }
+
+    /* =====================================================
+       INITIAL LOAD
+    ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        loadAppointments
+    );
+
+</script>
+
+</body>
+
+</html>

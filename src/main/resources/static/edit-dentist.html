@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Dentist - Sunrise Dental Clinic</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+
+            background: #172a35;
+
+            color: #f1e8d5;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
+
+        .container {
+
+            width: 600px;
+
+            max-width: 95%;
+
+            background: #203b44;
+
+            border:
+                    1px solid #365a62;
+
+            border-radius: 14px;
+
+            padding: 38px 42px;
+
+            box-shadow:
+                    0 8px 25px
+                    rgba(0, 0, 0, 0.30);
+        }
+
+
+        /* =====================================================
+           CLINIC TITLE
+        ===================================================== */
+
+        .clinic-title {
+
+            text-align: center;
+
+            margin-bottom: 8px;
+        }
+
+
+        .clinic-title .tooth {
+
+            font-size: 45px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .clinic-title h1 {
+
+            margin: 0;
+
+            color: #20c5bd;
+
+            font-size: 32px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .clinic-title p {
+
+            margin: 7px 0 0;
+
+            color: #aebfbe;
+
+            font-size: 15px;
+
+            letter-spacing: 1px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           PAGE TITLE
+        ===================================================== */
+
+        h2 {
+
+            text-align: center;
+
+            color: #f1e8d5;
+
+            font-size: 25px;
+
+            margin:
+                    25px 0 28px;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        label {
+
+            display: block;
+
+            margin-top: 18px;
+
+            margin-bottom: 8px;
+
+            color: #dfe9e6;
+
+            font-size: 16px;
+
+            font-weight: bold;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 14px 15px;
+
+            background: #172f38;
+
+            color: #f1e8d5;
+
+            border:
+                    1px solid #45666d;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition:
+                    border-color 0.2s,
+                    box-shadow 0.2s;
+        }
+
+
+        input::placeholder {
+
+            color: #809594;
+        }
+
+
+        input:focus {
+
+            border-color: #20c5bd;
+
+            box-shadow:
+                    0 0 0 2px
+                    rgba(32, 197, 189, 0.15);
+        }
+
+
+        /* =====================================================
+           BUTTON AREA
+        ===================================================== */
+
+        .button-row {
+
+            display: flex;
+
+            gap: 14px;
+
+            margin-top: 28px;
+        }
+
+
+        button {
+
+            flex: 1;
+
+            padding: 14px 20px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                    background 0.2s,
+                    transform 0.2s;
+        }
+
+
+        .update-btn {
+
+            background: #20a9a4;
+
+            color: #102d35;
+        }
+
+
+        .update-btn:hover {
+
+            background: #20c5bd;
+
+            transform:
+                    translateY(-2px);
+        }
+
+
+        .back {
+
+            background: #38545b;
+
+            color: #e5eeeb;
+        }
+
+
+        .back:hover {
+
+            background: #4a656b;
+
+            transform:
+                    translateY(-2px);
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        #message {
+
+            margin-top: 20px;
+
+            text-align: center;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            min-height: 20px;
+        }
+
+
+        .error {
+
+            color: #ff9999;
+        }
+
+
+        .success {
+
+            color: #64e0b1;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 650px) {
+
+            body {
+
+                padding: 20px;
+            }
+
+
+            .container {
+
+                padding:
+                        30px 25px;
+            }
+
+
+            .clinic-title h1 {
+
+                font-size: 27px;
+            }
+
+
+            h2 {
+
+                font-size: 22px;
+            }
+
+
+            .button-row {
+
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- =====================================================
+         CLINIC HEADER
+    ===================================================== -->
+
+    <div class="clinic-title">
+
+
+        <div class="tooth">
+            🦷
+        </div>
+
+
+        <h1>
+            SUNRISE DENTAL CLINIC
+        </h1>
+
+
+        <p>
+            COLOMBO, SRI LANKA
+        </p>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PAGE TITLE
+    ===================================================== -->
+
+    <h2>
+        Edit Dentist
+    </h2>
+
+
+
+    <!-- =====================================================
+         FORM
+    ===================================================== -->
+
+    <form id="dentistForm">
+
+
+        <label for="name">
+            Dentist Name
+        </label>
+
+
+        <input
+                type="text"
+                id="name"
+                minlength="2"
+                maxlength="100"
+                placeholder="Enter dentist name"
+                required
+        >
+
+
+
+        <label for="specialization">
+            Specialization
+        </label>
+
+
+        <input
+                type="text"
+                id="specialization"
+                minlength="2"
+                maxlength="100"
+                placeholder="Enter specialization"
+                required
+        >
+
+
+
+        <label for="phone">
+            Phone
+        </label>
+
+
+        <input
+                type="tel"
+                id="phone"
+                pattern="[0-9]{10}"
+                minlength="10"
+                maxlength="10"
+                placeholder="Enter 10-digit phone number"
+                required
+        >
+
+
+
+        <label for="email">
+            Email
+        </label>
+
+
+        <input
+                type="email"
+                id="email"
+                maxlength="100"
+                placeholder="Enter email address"
+                required
+        >
+
+
+
+        <!-- BUTTONS -->
+
+        <div class="button-row">
+
+
+            <button
+                    type="submit"
+                    class="update-btn">
+
+                Update Dentist
+
+            </button>
+
+
+
+            <button
+                    type="button"
+                    class="back"
+                    onclick="window.location.href='dentists.html'">
+
+                Back
+
+            </button>
+
+
+        </div>
+
+
+    </form>
+
+
+
+    <!-- MESSAGE -->
+
+    <div id="message"></div>
+
+
+</div>
+
+
+
+<script>
+
+
+    // =====================================================
+    // GET DENTIST ID FROM URL
+    // =====================================================
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const id =
+        params.get("id");
+
+
+    const message =
+        document.getElementById("message");
+
+
+
+    // =====================================================
+    // CHECK DENTIST ID
+    // =====================================================
+
+    if (!id) {
+
+        showError(
+            "Dentist ID not found."
+        );
+
+    } else {
+
+
+        // =================================================
+        // LOAD DENTIST DETAILS
+        // =================================================
+
+        fetch("/dentists/" + id)
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Dentist not found"
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(dentist => {
+
+
+                document.getElementById("name").value =
+                    dentist.name || "";
+
+
+                document.getElementById(
+                    "specialization"
+                ).value =
+                    dentist.specialization || "";
+
+
+                document.getElementById("phone").value =
+                    dentist.phone || "";
+
+
+                document.getElementById("email").value =
+                    dentist.email || "";
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error loading dentist:",
+                    error
+                );
+
+                showError(
+                    "Failed to load dentist details."
+                );
+
+            });
+
+    }
+
+
+
+    // =====================================================
+    // UPDATE DENTIST
+    // =====================================================
+
+    document.getElementById("dentistForm")
+        .addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                message.innerText = "";
+
+                message.className = "";
+
+
+
+                const name =
+                    document.getElementById("name")
+                        .value.trim();
+
+
+                const specialization =
+                    document.getElementById(
+                        "specialization"
+                    )
+                        .value.trim();
+
+
+                const phone =
+                    document.getElementById("phone")
+                        .value.trim();
+
+
+                const email =
+                    document.getElementById("email")
+                        .value.trim();
+
+
+
+                // =================================================
+                // NAME VALIDATION
+                // =================================================
+
+                if (name.length < 2) {
+
+                    showError(
+                        "Dentist name must contain at least 2 characters."
+                    );
+
+                    return;
+                }
+
+
+
+                // =================================================
+                // SPECIALIZATION VALIDATION
+                // =================================================
+
+                if (specialization.length < 2) {
+
+                    showError(
+                        "Please enter a valid specialization."
+                    );
+
+                    return;
+                }
+
+
+
+                // =================================================
+                // PHONE VALIDATION
+                // =================================================
+
+                const phonePattern =
+                    /^[0-9]{10}$/;
+
+
+                if (!phonePattern.test(phone)) {
+
+                    showError(
+                        "Phone number must contain exactly 10 digits."
+                    );
+
+                    return;
+                }
+
+
+
+                // =================================================
+                // EMAIL VALIDATION
+                // =================================================
+
+                const emailPattern =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+                if (!emailPattern.test(email)) {
+
+                    showError(
+                        "Please enter a valid email address."
+                    );
+
+                    return;
+                }
+
+
+
+                // =================================================
+                // DENTIST OBJECT
+                // =================================================
+
+                const dentist = {
+
+                    name: name,
+
+                    specialization:
+                    specialization,
+
+                    phone: phone,
+
+                    email: email
+
+                };
+
+
+
+                // =================================================
+                // UPDATE REQUEST
+                // =================================================
+
+                fetch("/dentists/" + id, {
+
+                    method: "PUT",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(dentist)
+
+                })
+
+
+                    .then(response => {
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Update failed"
+                            );
+
+                        }
+
+                        return response.json();
+
+                    })
+
+
+                    .then(data => {
+
+                        message.innerText =
+                            "Dentist updated successfully!";
+
+                        message.className =
+                            "success";
+
+
+                        setTimeout(function() {
+
+                            window.location.href =
+                                "dentists.html";
+
+                        }, 1000);
+
+                    })
+
+
+                    .catch(error => {
+
+                        console.error(
+                            "Error updating dentist:",
+                            error
+                        );
+
+                        showError(
+                            "Failed to update dentist. Please try again."
+                        );
+
+                    });
+
+            }
+        );
+
+
+
+    // =====================================================
+    // SHOW ERROR
+    // =====================================================
+
+    function showError(text) {
+
+        message.innerText = text;
+
+        message.className = "error";
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

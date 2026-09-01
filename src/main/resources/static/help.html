@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Help - Sunrise Dental Clinic</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #172a35;
+            color: #f1e8d5;
+        }
+
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 240px;
+            height: 100vh;
+
+            background: #12343b;
+
+            border-right: 1px solid #31545c;
+
+            padding: 20px 13px;
+
+            z-index: 10;
+
+            overflow-y: auto;
+        }
+
+
+        /* ================= LOGO ================= */
+
+        .logo {
+            text-align: center;
+
+            padding: 8px 5px 22px;
+
+            border-bottom: 1px solid #31545c;
+
+            margin-bottom: 18px;
+        }
+
+        .logo-icon {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .logo h1 {
+            margin: 0;
+
+            color: #20b8b0;
+
+            font-size: 22px;
+
+            letter-spacing: 2px;
+        }
+
+        .logo p {
+            margin: 5px 0 0;
+
+            color: #d9e4df;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* ================= MENU ================= */
+
+        .menu {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+        .menu a {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px 14px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #d3dfdd;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #1d4b53;
+
+            color: #20c5bd;
+        }
+
+        .menu a.active {
+            background: #20a9a4;
+
+            color: #102d35;
+
+            font-weight: bold;
+        }
+
+        .menu-icon {
+            width: 24px;
+
+            text-align: center;
+
+            font-size: 17px;
+
+            flex-shrink: 0;
+        }
+
+        /* ==============================
+           MENU
+        ============================== */
+
+        .menu {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .menu a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 14px 15px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #d3dfdd;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .menu a:hover {
+
+            background: #1d4b53;
+
+            color: #20c5bd;
+        }
+
+
+        .menu a.active {
+
+            background: #20a9a4;
+
+            color: #102d35;
+        }
+
+
+        .menu-icon {
+
+            width: 25px;
+
+            text-align: center;
+
+            font-size: 20px;
+        }
+
+
+        /* ==============================
+           SIDEBAR BOTTOM
+        ============================== */
+
+        .sidebar-bottom {
+
+            position: absolute;
+
+            left: 13px;
+            right: 13px;
+            bottom: 18px;
+
+            padding: 18px 8px;
+
+            text-align: center;
+
+            border-radius: 12px;
+
+            background:
+                    linear-gradient(
+                            145deg,
+                            #1d7778,
+                            #14565f
+                    );
+        }
+
+
+        .sidebar-bottom .tooth {
+
+            font-size: 36px;
+        }
+
+
+        .sidebar-bottom h3 {
+
+            margin: 6px 0;
+
+            font-size: 15px;
+        }
+
+
+        .sidebar-bottom p {
+
+            margin: 4px 0;
+
+            color: #c8d9d5;
+
+            font-size: 13px;
+        }
+
+
+        /* ==============================
+           MAIN
+        ============================== */
+
+        .main {
+
+            margin-left: 240px;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        /* ==============================
+           TOP BAR
+        ============================== */
+
+        .topbar {
+
+            height: 75px;
+
+            flex-shrink: 0;
+
+            background: #1d3b46;
+
+            border-bottom: 1px solid #31545c;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+        }
+
+
+        .page-title {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            color: #f1e8d5;
+        }
+
+
+        .profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+
+        .profile-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: #20a9a4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #102d35;
+
+            font-size: 20px;
+        }
+
+
+        .profile strong {
+
+            font-size: 15px;
+        }
+
+
+        .profile small {
+
+            display: block;
+
+            color: #aebfbe;
+
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+
+        /* ==============================
+           CONTENT
+        ============================== */
+
+        .content {
+
+            flex: 1;
+
+            padding: 35px 30px 50px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+        }
+
+
+        .heading {
+
+            width: 100%;
+
+            max-width: 950px;
+
+            margin-bottom: 25px;
+
+            text-align: left;
+        }
+
+
+        .heading h1 {
+
+            margin: 0;
+
+            font-size: 36px;
+
+            color: #f1e8d5;
+        }
+
+
+        .heading p {
+
+            margin: 9px 0 0;
+
+            color: #aebfbe;
+
+            font-size: 16px;
+        }
+
+
+        /* ==============================
+           HELP CARD
+        ============================== */
+
+        .help-card {
+
+            width: 100%;
+
+            max-width: 950px;
+
+            background: #203b44;
+
+            border: 1px solid #365a62;
+
+            border-radius: 12px;
+
+            padding: 30px;
+
+            box-shadow:
+                    0 5px 15px
+                    rgba(0,0,0,0.18);
+        }
+
+
+        .welcome {
+
+            background: #193942;
+
+            border: 1px solid #315a62;
+
+            border-radius: 9px;
+
+            padding: 20px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .welcome h2 {
+
+            margin: 0 0 8px;
+
+            color: #20c5bd;
+
+            font-size: 23px;
+        }
+
+
+        .welcome p {
+
+            margin: 0;
+
+            color: #b9c9c7;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ==============================
+           HELP SECTIONS
+        ============================== */
+
+        .help-section {
+
+            background: #1b353e;
+
+            border: 1px solid #34565e;
+
+            border-radius: 9px;
+
+            padding: 22px 25px;
+
+            margin-bottom: 18px;
+
+            transition: 0.2s;
+        }
+
+
+        .help-section:hover {
+
+            border-color: #20a9a4;
+
+            transform: translateY(-1px);
+        }
+
+
+        .section-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .section-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 8px;
+
+            background: #245760;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 22px;
+        }
+
+
+        .help-section h2 {
+
+            margin: 0;
+
+            color: #20c5bd;
+
+            font-size: 21px;
+        }
+
+
+        .help-section p {
+
+            margin: 5px 0 0;
+
+            color: #aebfbe;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+        }
+
+
+        .help-section ul {
+
+            margin: 14px 0 0;
+
+            padding-left: 27px;
+        }
+
+
+        .help-section li {
+
+            color: #d4dfdd;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            margin: 7px 0;
+        }
+
+
+        .help-section li::marker {
+
+            color: #20c5bd;
+        }
+
+
+        /* ==============================
+           CONTACT BOX
+        ============================== */
+
+        .contact-box {
+
+            background:
+                    linear-gradient(
+                            135deg,
+                            #194d56,
+                            #183a43
+                    );
+
+            border: 1px solid #27777a;
+
+            border-radius: 10px;
+
+            padding: 22px;
+
+            margin-top: 5px;
+
+            text-align: center;
+        }
+
+
+        .contact-box h2 {
+
+            margin: 0 0 10px;
+
+            color: #20c5bd;
+
+            font-size: 22px;
+        }
+
+
+        .contact-box p {
+
+            margin: 7px 0;
+
+            color: #d1dfdc;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ==============================
+           BACK BUTTON
+        ============================== */
+
+        .button-area {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin-top: 28px;
+        }
+
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-width: 190px;
+
+            height: 50px;
+
+            padding: 0 22px;
+
+            background: #20a9a4;
+
+            color: #102d35;
+
+            text-decoration: none;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+
+        .button:hover {
+
+            background: #42cbc5;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+
+                display: none;
+            }
+
+
+            .main {
+
+                margin-left: 0;
+            }
+
+
+            .content {
+
+                padding: 25px 18px 40px;
+            }
+
+
+            .topbar {
+
+                padding: 0 18px;
+            }
+
+
+            .page-title {
+
+                font-size: 20px;
+            }
+
+
+            .heading h1 {
+
+                font-size: 30px;
+            }
+
+
+            .help-card {
+
+                padding: 20px;
+            }
+
+
+            .help-section {
+
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🦷
+        </div>
+
+        <h1>
+            SUNRISE
+        </h1>
+
+        <p>
+            DENTAL CLINIC
+        </p>
+
+    </div>
+
+
+    <div class="menu">
+
+
+        <a href="dashboard.html">
+
+            <span class="menu-icon">
+                ⌂
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="appointments.html">
+
+            <span class="menu-icon">
+                📅
+            </span>
+
+            Appointments
+
+        </a>
+
+
+        <a href="patients.html">
+
+            <span class="menu-icon">
+                👤
+            </span>
+
+            Patients
+
+        </a>
+
+
+        <a href="dentists.html">
+
+            <span class="menu-icon">
+                🧑‍⚕️
+            </span>
+
+            Dentists
+
+        </a>
+
+
+        <a href="services.html">
+
+            <span class="menu-icon">
+                🦷
+            </span>
+
+            Services
+
+        </a>
+
+
+        <a href="billing.html">
+
+            <span class="menu-icon">
+                🧾
+            </span>
+
+            Billing
+
+        </a>
+
+
+        <a href="reports.html">
+
+            <span class="menu-icon">
+                📊
+            </span>
+
+            Reports
+
+        </a>
+
+
+        <a href="notifications.html">
+
+            <span class="menu-icon">
+                🔔
+            </span>
+
+            Notifications
+
+        </a>
+
+
+        <a href="help.html" class="active">
+
+            <span class="menu-icon">
+                ❓
+            </span>
+
+            Help
+
+        </a>
+
+
+        <a href="login.html">
+
+            <span class="menu-icon">
+                ↪
+            </span>
+
+            Logout
+
+        </a>
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div class="page-title">
+            Help & User Guide
+        </div>
+
+
+        <div class="profile">
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+            <div>
+
+                <strong>
+                    Dr. Sunrise
+                </strong>
+
+                <small>
+                    Administrator
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CONTENT
+    ================================================= -->
+
+    <div class="content">
+
+
+        <div class="heading">
+
+            <h1>
+                Help & User Guide
+            </h1>
+
+            <p>
+                Learn how to use the Sunrise Dental Clinic Management System
+            </p>
+
+        </div>
+
+
+
+        <div class="help-card">
+
+
+            <!-- WELCOME -->
+
+            <div class="welcome">
+
+                <h2>
+                    🦷 Welcome to Sunrise Dental Clinic
+                </h2>
+
+                <p>
+                    This guide provides information about the main
+                    features of the Sunrise Dental Clinic Management
+                    System. Use the sections below to manage patients,
+                    dentists, appointments and billing efficiently.
+                </p>
+
+            </div>
+
+
+
+            <!-- PATIENT MANAGEMENT -->
+
+            <div class="help-section">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Patient Management
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <ul>
+
+                    <li>
+                        Add new patient details.
+                    </li>
+
+                    <li>
+                        Search patients by name, email or phone.
+                    </li>
+
+                    <li>
+                        Edit existing patient information.
+                    </li>
+
+                    <li>
+                        Delete patient records when required.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- DENTIST MANAGEMENT -->
+
+            <div class="help-section">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🧑‍⚕️
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Dentist Management
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <ul>
+
+                    <li>
+                        Add dentist details and specialization.
+                    </li>
+
+                    <li>
+                        Search dentists by name or specialization.
+                    </li>
+
+                    <li>
+                        Edit dentist information.
+                    </li>
+
+                    <li>
+                        Delete dentist records.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- APPOINTMENT MANAGEMENT -->
+
+            <div class="help-section">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Appointment Management
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <ul>
+
+                    <li>
+                        Create new appointments.
+                    </li>
+
+                    <li>
+                        Appointment numbers are generated automatically.
+                    </li>
+
+                    <li>
+                        Select a dentist from the available dentist list.
+                    </li>
+
+                    <li>
+                        Select treatment type, date, time and status.
+                    </li>
+
+                    <li>
+                        Edit or delete appointments.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- BILLING MANAGEMENT -->
+
+            <div class="help-section">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🧾
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Billing Management
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <ul>
+
+                    <li>
+                        Select an appointment for billing.
+                    </li>
+
+                    <li>
+                        Enter treatment and bill amount.
+                    </li>
+
+                    <li>
+                        Select payment status.
+                    </li>
+
+                    <li>
+                        Save and manage bills.
+                    </li>
+
+                    <li>
+                        Print bills when required.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- DASHBOARD -->
+
+            <div class="help-section">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Dashboard
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <p>
+
+                    The dashboard displays the total number of
+                    patients, dentists, appointments and bills.
+                    It also displays pending appointments and
+                    total revenue.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- CONTACT -->
+
+            <div class="contact-box">
+
+                <h2>
+                    ❓ Need More Help?
+                </h2>
+
+                <p>
+                    Please contact the clinic administrator if you
+                    experience any problem while using the system.
+                </p>
+
+                <p>
+                    📞 +94 11 234 5678
+                </p>
+
+                <p>
+                    ✉ info@sunrisedental.lk
+                </p>
+
+            </div>
+
+
+
+            <!-- BACK BUTTON -->
+
+            <div class="button-area">
+
+                <a
+                        href="dashboard.html"
+                        class="button">
+
+                    ← Back to Dashboard
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

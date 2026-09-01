@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Appointment - Sunrise Dental Clinic</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #142d36;
+
+            color: #f5f5f5;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+
+            position: fixed;
+
+            left: 0;
+
+            top: 0;
+
+            width: 180px;
+
+            height: 100vh;
+
+            background: #103842;
+
+            border-right: 1px solid #315660;
+
+            padding: 25px 10px;
+
+            z-index: 10;
+        }
+
+
+        .logo {
+
+            text-align: center;
+
+            padding: 5px 0 25px;
+
+            border-bottom: 1px solid #315660;
+
+            margin-bottom: 18px;
+        }
+
+
+        .logo-icon {
+
+            font-size: 35px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .logo-name {
+
+            color: #12c4c4;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+        }
+
+
+        .logo-sub {
+
+            color: #ffffff;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            margin-top: 3px;
+        }
+
+
+        .nav-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            padding: 12px 14px;
+
+            margin: 4px 0;
+
+            border-radius: 6px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        .nav-item:hover {
+
+            background: #1d5962;
+        }
+
+
+        .nav-item.active {
+
+            background: #20b5b5;
+
+            color: #082c35;
+        }
+
+
+        .nav-icon {
+
+            width: 18px;
+
+            text-align: center;
+
+            font-size: 16px;
+        }
+
+
+        .clinic-card {
+
+            position: absolute;
+
+            bottom: 15px;
+
+            left: 10px;
+
+            right: 10px;
+
+            background: #1c6870;
+
+            border-radius: 8px;
+
+            padding: 15px 8px;
+
+            text-align: center;
+        }
+
+
+        .clinic-card .tooth {
+
+            font-size: 30px;
+        }
+
+
+        .clinic-card strong {
+
+            display: block;
+
+            font-size: 12px;
+
+            margin-top: 4px;
+        }
+
+
+        .clinic-card small {
+
+            display: block;
+
+            font-size: 9px;
+
+            color: #d6ffff;
+
+            margin-top: 4px;
+        }
+
+
+        /* =========================
+           MAIN AREA
+        ========================= */
+
+        .main {
+
+            margin-left: 180px;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .topbar {
+
+            height: 55px;
+
+            background: #1b424d;
+
+            border-bottom: 1px solid #315660;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 25px;
+        }
+
+
+        .topbar-title {
+
+            font-size: 19px;
+
+            font-weight: bold;
+        }
+
+
+        .user-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .user-icon {
+
+            width: 34px;
+
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: #20b5b5;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #172e36;
+
+            font-size: 17px;
+        }
+
+
+        .user-info {
+
+            line-height: 1.2;
+        }
+
+
+        .user-info strong {
+
+            display: block;
+
+            font-size: 12px;
+        }
+
+
+        .user-info small {
+
+            font-size: 9px;
+
+            color: #a9d0d5;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .content {
+
+            padding: 28px 35px 50px;
+        }
+
+
+        .page-heading {
+
+            text-align: center;
+
+            margin-bottom: 22px;
+        }
+
+
+        .page-heading h1 {
+
+            margin: 0;
+
+            font-size: 30px;
+
+            color: #f5f1e8;
+        }
+
+
+        .page-heading p {
+
+            margin: 7px 0 0;
+
+            color: #b8d0d5;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           FORM CARD
+        ========================= */
+
+        .form-card {
+
+            width: 760px;
+
+            max-width: 100%;
+
+            margin: auto;
+
+            background: #20434d;
+
+            border: 1px solid #3b626b;
+
+            border-radius: 10px;
+
+            padding: 28px 30px 30px;
+
+            box-shadow:
+                    0 5px 18px rgba(0,0,0,0.18);
+        }
+
+
+        .card-title {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            color: #12c4c4;
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            margin-bottom: 24px;
+        }
+
+
+        .card-title-icon {
+
+            font-size: 21px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+
+            margin-bottom: 2px;
+        }
+
+
+        .form-group {
+
+            min-width: 0;
+        }
+
+
+        label {
+
+            display: block;
+
+            color: #f4f4f4;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin: 10px 0 7px;
+        }
+
+
+        .required {
+
+            color: #16c4c4;
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            height: 41px;
+
+            padding: 0 12px;
+
+            background: #14333d;
+
+            color: #f5f5f5;
+
+            border: 1px solid #4a7078;
+
+            border-radius: 6px;
+
+            outline: none;
+
+            font-size: 13px;
+        }
+
+
+        input::placeholder {
+
+            color: #8caeb5;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: #13c4c4;
+
+            box-shadow:
+                    0 0 0 2px rgba(19,196,196,0.12);
+        }
+
+
+        input[readonly] {
+
+            background: #183b44;
+
+            color: #9db9be;
+
+            cursor: not-allowed;
+        }
+
+
+        select {
+
+            cursor: pointer;
+        }
+
+
+        select option {
+
+            background: #173842;
+
+            color: white;
+        }
+
+
+        /* =========================
+           TREATMENT
+        ========================= */
+
+        .treatment-wrapper {
+
+            position: relative;
+        }
+
+
+        .treatment-help {
+
+            color: #8eb8be;
+
+            font-size: 10px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .button-row {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-top: 27px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #3b626b;
+        }
+
+
+        button {
+
+            height: 43px;
+
+            padding: 0 24px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .update-btn {
+
+            background: #20b5b5;
+
+            color: #092c34;
+        }
+
+
+        .update-btn:hover {
+
+            background: #17caca;
+        }
+
+
+        .back-btn {
+
+            background: #496872;
+
+            color: white;
+        }
+
+
+        .back-btn:hover {
+
+            background: #587983;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        #message {
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            min-height: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        .success {
+
+            color: #32e0a0;
+        }
+
+
+        .error {
+
+            color: #ff6b6b;
+        }
+
+
+        .loading {
+
+            color: #65c9e0;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+
+                width: 150px;
+            }
+
+
+            .main {
+
+                margin-left: 150px;
+            }
+
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .sidebar {
+
+                display: none;
+            }
+
+
+            .main {
+
+                margin-left: 0;
+            }
+
+
+            .content {
+
+                padding: 20px 15px;
+            }
+
+
+            .form-card {
+
+                padding: 22px 18px;
+            }
+
+
+            .topbar {
+
+                padding: 0 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🦷
+        </div>
+
+        <div class="logo-name">
+            SUNRISE
+        </div>
+
+        <div class="logo-sub">
+            DENTAL CLINIC
+        </div>
+
+    </div>
+
+
+    <a
+            href="dashboard.html"
+            class="nav-item">
+
+        <span class="nav-icon">⌂</span>
+
+        Dashboard
+
+    </a>
+
+
+    <a
+            href="appointments.html"
+            class="nav-item active">
+
+        <span class="nav-icon">▦</span>
+
+        Appointments
+
+    </a>
+
+
+    <a
+            href="patients.html"
+            class="nav-item">
+
+        <span class="nav-icon">👤</span>
+
+        Patients
+
+    </a>
+
+
+    <a
+            href="dentists.html"
+            class="nav-item">
+
+        <span class="nav-icon">🧑‍⚕️</span>
+
+        Dentists
+
+    </a>
+
+
+    <a
+            href="services.html"
+            class="nav-item">
+
+        <span class="nav-icon">🦷</span>
+
+        Services
+
+    </a>
+
+
+    <a
+            href="billing.html"
+            class="nav-item">
+
+        <span class="nav-icon">▤</span>
+
+        Billing
+
+    </a>
+
+
+    <a
+            href="reports.html"
+            class="nav-item">
+
+        <span class="nav-icon">▥</span>
+
+        Reports
+
+    </a>
+
+
+    <a
+            href="notifications.html"
+            class="nav-item">
+
+        <span class="nav-icon">🔔</span>
+
+        Notifications
+
+    </a>
+
+
+    <a
+            href="help.html"
+            class="nav-item">
+
+        <span class="nav-icon">?</span>
+
+        Help
+
+    </a>
+
+
+    <a
+            href="login.html"
+            class="nav-item">
+
+        <span class="nav-icon">↪</span>
+
+        Logout
+
+    </a>
+
+
+    <div class="clinic-card">
+
+        <div class="tooth">
+            🦷
+        </div>
+
+        <strong>
+            Sunrise Dental Clinic
+        </strong>
+
+        <small>
+            Colombo, Sri Lanka
+        </small>
+
+        <small>
+            Creating Healthy Smiles
+        </small>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+
+        <div class="topbar-title">
+            Appointment Management
+        </div>
+
+
+        <div class="user-area">
+
+            <div class="user-icon">
+                👤
+            </div>
+
+            <div class="user-info">
+
+                <strong>
+                    Dr. Sunrise
+                </strong>
+
+                <small>
+                    Administrator
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+
+        <div class="page-heading">
+
+            <h1>
+                Edit Appointment
+            </h1>
+
+            <p>
+                Update appointment details at Sunrise Dental Clinic
+            </p>
+
+        </div>
+
+
+
+        <!-- FORM CARD -->
+
+        <div class="form-card">
+
+
+            <div class="card-title">
+
+                <span class="card-title-icon">
+                    📅
+                </span>
+
+                Edit Appointment Information
+
+            </div>
+
+
+
+            <form id="appointmentForm">
+
+
+                <!-- APPOINTMENT NUMBER -->
+
+                <div class="form-group">
+
+                    <label for="appointmentNumber">
+                        Appointment Number
+                    </label>
+
+                    <input
+                            type="text"
+                            id="appointmentNumber"
+                            readonly
+                    >
+
+                </div>
+
+
+
+                <!-- PATIENT + DENTIST -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="patientName">
+                            Patient Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                                type="text"
+                                id="patientName"
+                                placeholder="Enter patient name"
+                                minlength="2"
+                                maxlength="100"
+                                required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="dentistName">
+                            Dentist
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                                type="text"
+                                id="dentistName"
+                                list="dentistList"
+                                placeholder="Select dentist..."
+                                autocomplete="off"
+                                required
+                        >
+
+                        <datalist id="dentistList"></datalist>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ADDRESS + CONTACT -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                                type="text"
+                                id="address"
+                                placeholder="Enter patient address"
+                                minlength="3"
+                                maxlength="200"
+                                required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="contactNumber">
+                            Contact Number
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                                type="tel"
+                                id="contactNumber"
+                                placeholder="0771234567"
+                                pattern="[0-9]{10}"
+                                minlength="10"
+                                maxlength="10"
+                                required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- TREATMENT -->
+
+                <div class="form-group">
+
+                    <label for="treatmentType">
+
+                        Treatment
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <div class="treatment-wrapper">
+
+                        <input
+                                type="text"
+                                id="treatmentType"
+                                list="treatmentList"
+                                placeholder="Select or type treatment..."
+                                autocomplete="off"
+                                required
+                        >
+
+
+                        <datalist id="treatmentList">
+
+                            <option value="Dental Cleaning">
+
+                            <option value="Dental Filling">
+
+                            <option value="Tooth Extraction">
+
+                            <option value="Root Canal">
+
+                            <option value="Dental Checkup">
+
+                            <option value="Dental Crown">
+
+                            <option value="Dental Bridge">
+
+                            <option value="Teeth Whitening">
+
+                            <option value="Braces">
+
+                            <option value="Other">
+
+                        </datalist>
+
+
+                        <div class="treatment-help">
+                            Select a treatment or type a different treatment.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DATE + TIME -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="appointmentDate">
+
+                            Appointment Date
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                                type="date"
+                                id="appointmentDate"
+                                required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="appointmentTime">
+
+                            Appointment Time
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                                type="time"
+                                id="appointmentTime"
+                                required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div class="form-group">
+
+                    <label for="status">
+
+                        Status
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <select
+                            id="status"
+                            required>
+
+                        <option value="">
+                            Select Status
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Confirmed">
+                            Confirmed
+                        </option>
+
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+                        <option value="Cancelled">
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-row">
+
+
+                    <button
+                            type="submit"
+                            class="update-btn">
+
+                        ✓ Update Appointment
+
+                    </button>
+
+
+                    <button
+                            type="button"
+                            class="back-btn"
+                            onclick="window.location.href='appointments.html'">
+
+                        ← Back
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+            <div id="message"></div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+    /* =====================================================
+       GET APPOINTMENT ID
+    ===================================================== */
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const id =
+        params.get("id");
+
+
+    const message =
+        document.getElementById("message");
+
+
+    const form =
+        document.getElementById(
+            "appointmentForm"
+        );
+
+
+    const today =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+    document.getElementById(
+        "appointmentDate"
+    ).min = today;
+
+
+
+    /* =====================================================
+       LOAD DENTISTS
+    ===================================================== */
+
+    function loadDentists() {
+
+
+        fetch("/dentists")
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load dentists"
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(dentists => {
+
+
+                const list =
+                    document.getElementById(
+                        "dentistList"
+                    );
+
+
+                list.innerHTML = "";
+
+
+                dentists.forEach(
+                    dentist => {
+
+
+                        if (
+                            dentist.name &&
+                            dentist.name.trim() !== ""
+                        ) {
+
+
+                            const option =
+                                document.createElement(
+                                    "option"
+                                );
+
+
+                            option.value =
+                                dentist.name;
+
+
+                            list.appendChild(
+                                option
+                            );
+
+                        }
+
+                    }
+                );
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Dentist loading error:",
+                    error
+                );
+
+            });
+
+    }
+
+
+
+    /* =====================================================
+       LOAD APPOINTMENT
+    ===================================================== */
+
+    function loadAppointment() {
+
+
+        if (!id) {
+
+            showError(
+                "Appointment ID not found."
+            );
+
+            return;
+
+        }
+
+
+        message.innerText =
+            "Loading appointment...";
+
+        message.className =
+            "loading";
+
+
+        fetch(
+            "/appointments/" + id
+        )
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Appointment not found"
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(appointment => {
+
+
+                document.getElementById(
+                    "appointmentNumber"
+                ).value =
+                    appointment.appointmentNumber || "";
+
+
+
+                document.getElementById(
+                    "patientName"
+                ).value =
+                    appointment.patientName || "";
+
+
+
+                document.getElementById(
+                    "dentistName"
+                ).value =
+                    appointment.dentistName || "";
+
+
+
+                document.getElementById(
+                    "address"
+                ).value =
+                    appointment.address || "";
+
+
+
+                document.getElementById(
+                    "contactNumber"
+                ).value =
+                    appointment.contactNumber || "";
+
+
+
+                /*
+                 * IMPORTANT:
+                 *
+                 * Treatment is an INPUT, not a fixed SELECT.
+                 *
+                 * Therefore the existing treatment can be
+                 * changed to any treatment.
+                 */
+
+                document.getElementById(
+                    "treatmentType"
+                ).value =
+                    appointment.treatmentType || "";
+
+
+
+                document.getElementById(
+                    "appointmentDate"
+                ).value =
+                    appointment.appointmentDate || "";
+
+
+
+                document.getElementById(
+                    "appointmentTime"
+                ).value =
+                    appointment.appointmentTime || "";
+
+
+
+                document.getElementById(
+                    "status"
+                ).value =
+                    appointment.status || "Pending";
+
+
+                message.innerText = "";
+
+                message.className = "";
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error loading appointment:",
+                    error
+                );
+
+
+                showError(
+                    "Unable to load appointment details."
+                );
+
+            });
+
+    }
+
+
+
+    /* =====================================================
+       UPDATE APPOINTMENT
+    ===================================================== */
+
+    form.addEventListener(
+        "submit",
+        function(event) {
+
+
+            event.preventDefault();
+
+
+            message.innerText = "";
+
+            message.className = "";
+
+
+
+            const appointmentNumber =
+                document.getElementById(
+                    "appointmentNumber"
+                ).value.trim();
+
+
+            const patientName =
+                document.getElementById(
+                    "patientName"
+                ).value.trim();
+
+
+            const dentistName =
+                document.getElementById(
+                    "dentistName"
+                ).value.trim();
+
+
+            const address =
+                document.getElementById(
+                    "address"
+                ).value.trim();
+
+
+            const contactNumber =
+                document.getElementById(
+                    "contactNumber"
+                ).value.trim();
+
+
+            const treatmentType =
+                document.getElementById(
+                    "treatmentType"
+                ).value.trim();
+
+
+            const appointmentDate =
+                document.getElementById(
+                    "appointmentDate"
+                ).value;
+
+
+            const appointmentTime =
+                document.getElementById(
+                    "appointmentTime"
+                ).value;
+
+
+            const status =
+                document.getElementById(
+                    "status"
+                ).value;
+
+
+
+            /* =========================
+               VALIDATION
+            ========================= */
+
+            if (!appointmentNumber) {
+
+                showError(
+                    "Appointment number is missing."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                patientName.length < 2
+            ) {
+
+                showError(
+                    "Patient name must contain at least 2 characters."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                dentistName.length < 2
+            ) {
+
+                showError(
+                    "Please select a valid dentist."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                address.length < 3
+            ) {
+
+                showError(
+                    "Please enter a valid address."
+                );
+
+                return;
+
+            }
+
+
+            const phonePattern =
+                /^[0-9]{10}$/;
+
+
+            if (
+                !phonePattern.test(
+                    contactNumber
+                )
+            ) {
+
+                showError(
+                    "Contact number must contain exactly 10 digits."
+                );
+
+                return;
+
+            }
+
+
+            if (!treatmentType) {
+
+                showError(
+                    "Please select or enter a treatment."
+                );
+
+                return;
+
+            }
+
+
+            if (!appointmentDate) {
+
+                showError(
+                    "Please select an appointment date."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                appointmentDate < today
+            ) {
+
+                showError(
+                    "Appointment date cannot be in the past."
+                );
+
+                return;
+
+            }
+
+
+            if (!appointmentTime) {
+
+                showError(
+                    "Please select an appointment time."
+                );
+
+                return;
+
+            }
+
+
+            const validStatuses = [
+
+                "Pending",
+
+                "Confirmed",
+
+                "Completed",
+
+                "Cancelled"
+
+            ];
+
+
+            if (
+                !validStatuses.includes(
+                    status
+                )
+            ) {
+
+                showError(
+                    "Please select a valid appointment status."
+                );
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               UPDATED OBJECT
+            ========================= */
+
+            const appointment = {
+
+                appointmentNumber:
+                appointmentNumber,
+
+                patientName:
+                patientName,
+
+                address:
+                address,
+
+                contactNumber:
+                contactNumber,
+
+                dentistName:
+                dentistName,
+
+                treatmentType:
+                treatmentType,
+
+                appointmentDate:
+                appointmentDate,
+
+                appointmentTime:
+                appointmentTime,
+
+                status:
+                status
+
+            };
+
+
+            console.log(
+                "Updating appointment:",
+                appointment
+            );
+
+
+
+            /* =========================
+               SEND PUT REQUEST
+            ========================= */
+
+            fetch(
+                "/appointments/" + id,
+                {
+
+                    method: "PUT",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(
+                            appointment
+                        )
+
+                }
+            )
+
+                .then(async response => {
+
+
+                    const text =
+                        await response.text();
+
+
+                    console.log(
+                        "Update response:",
+                        response.status,
+                        text
+                    );
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            text ||
+                            "Failed to update appointment"
+                        );
+
+                    }
+
+
+                    return text;
+
+                })
+
+
+                .then(() => {
+
+
+                    message.innerText =
+                        "Appointment updated successfully!";
+
+                    message.className =
+                        "success";
+
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "appointments.html";
+
+                        },
+                        900
+                    );
+
+                })
+
+
+                .catch(error => {
+
+
+                    console.error(
+                        "Update error:",
+                        error
+                    );
+
+
+                    showError(
+                        error.message ||
+                        "Failed to update appointment. Please try again."
+                    );
+
+                });
+
+        }
+    );
+
+
+
+    /* =====================================================
+       ERROR MESSAGE
+    ===================================================== */
+
+    function showError(text) {
+
+        message.innerText =
+            text;
+
+        message.className =
+            "error";
+
+    }
+
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    loadDentists();
+
+    loadAppointment();
+
+
+</script>
+
+
+</body>
+
+</html>

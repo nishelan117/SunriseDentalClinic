@@ -1,0 +1,302 @@
+/* =========================================================
+   SUNRISE DENTAL CLINIC
+   GLOBAL FONT & TYPOGRAPHY
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    margin: 0;
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+h1 {
+    font-size: 30px !important;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+h2 {
+    font-size: 24px !important;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: 20px !important;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+h4 {
+    font-size: 17px !important;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+p {
+    font-size: 15px !important;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar,
+.sidebar * {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.sidebar a,
+.sidebar li,
+.sidebar span {
+    font-size: 14px !important;
+}
+
+.sidebar .logo,
+.sidebar .clinic-name {
+    font-size: 18px !important;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar,
+.header,
+.navbar {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.topbar h1,
+.header h1,
+.navbar h1 {
+    font-size: 22px !important;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card,
+.stat-card,
+.dashboard-card {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.card-title,
+.stat-card h3,
+.dashboard-card h3 {
+    font-size: 16px !important;
+    font-weight: 700;
+}
+
+.stat-card .number,
+.stat-number {
+    font-size: 28px !important;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
+
+label {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea,
+button {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+}
+
+input,
+select,
+textarea {
+    line-height: 1.4;
+}
+
+button {
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+table {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+}
+
+th {
+    font-size: 14px !important;
+    font-weight: 700;
+}
+
+td {
+    font-size: 14px !important;
+}
+
+
+/* =========================================================
+   SEARCH BOX
+   ========================================================= */
+
+input::placeholder,
+textarea::placeholder {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.status,
+.badge,
+.status-badge {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn,
+button,
+.action-btn {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+}
+
+
+/* =========================================================
+   SMALL TEXT
+   ========================================================= */
+
+.small,
+.subtitle,
+.description,
+.muted {
+    font-size: 13px !important;
+}
+
+
+/* =========================================================
+   DASHBOARD QUICK ACTIONS
+   ========================================================= */
+
+.quick-action,
+.quick-actions {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.quick-action span,
+.quick-action p {
+    font-size: 13px !important;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   APPOINTMENT / BILLING / MANAGEMENT SECTIONS
+   ========================================================= */
+
+.management-section,
+.appointment-section,
+.billing-section,
+.form-section {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+.modal,
+.modal-content {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.modal h2 {
+    font-size: 22px !important;
+}
+
+.modal p {
+    font-size: 14px !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    html,
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 26px !important;
+    }
+
+    h2 {
+        font-size: 22px !important;
+    }
+
+    h3 {
+        font-size: 18px !important;
+    }
+
+    table {
+        font-size: 13px !important;
+    }
+
+    th,
+    td {
+        font-size: 13px !important;
+    }
+}

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Service - Sunrise Dental Clinic</title>
+
+    <style>
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #172a35;
+            color: #f1e8d5;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 240px;
+            height: 100vh;
+
+            background: #12343b;
+
+            border-right: 1px solid #31545c;
+
+            padding: 20px 13px;
+
+            z-index: 10;
+
+            overflow-y: auto;
+        }
+
+
+        /* ================= LOGO ================= */
+
+        .logo {
+            text-align: center;
+
+            padding: 8px 5px 22px;
+
+            border-bottom: 1px solid #31545c;
+
+            margin-bottom: 18px;
+        }
+
+        .logo-icon {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .logo h1 {
+            margin: 0;
+
+            color: #20b8b0;
+
+            font-size: 22px;
+
+            letter-spacing: 2px;
+        }
+
+        .logo p {
+            margin: 5px 0 0;
+
+            color: #d9e4df;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* ================= MENU ================= */
+
+        .menu {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+        .menu a {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px 14px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #d3dfdd;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #1d4b53;
+
+            color: #20c5bd;
+        }
+
+        .menu a.active {
+            background: #20a9a4;
+
+            color: #102d35;
+
+            font-weight: bold;
+        }
+
+        .menu-icon {
+            width: 24px;
+
+            text-align: center;
+
+            font-size: 17px;
+
+            flex-shrink: 0;
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: 270px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 84px;
+            background: #1d3b46;
+            border-bottom: 1px solid #31545c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .page-title {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #20a9a4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .profile strong {
+            font-size: 18px;
+        }
+
+        .profile small {
+            display: block;
+            margin-top: 4px;
+            color: #aebfbe;
+            font-size: 14px;
+        }
+
+        /* CONTENT */
+        .content {
+            padding: 40px;
+        }
+
+        .heading h1 {
+            margin: 0;
+            font-size: 43px;
+        }
+
+        .heading p {
+            margin: 10px 0 30px;
+            color: #aebfbe;
+            font-size: 19px;
+        }
+
+        /* FORM CARD */
+        .form-card {
+            max-width: 900px;
+            background: #203b44;
+            border: 1px solid #365a62;
+            border-radius: 14px;
+            padding: 35px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.18);
+        }
+
+        .form-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 22px;
+            margin-bottom: 28px;
+            border-bottom: 1px solid #36545b;
+        }
+
+        .form-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 13px;
+            background: #285b61;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .form-header h2 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        .form-header p {
+            margin: 5px 0 0;
+            color: #91aaa9;
+            font-size: 15px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 23px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 17px;
+            font-weight: bold;
+            color: #d9e5e2;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #49666c;
+            border-radius: 8px;
+            background: #172f38;
+            color: #f1e8d5;
+            font-size: 17px;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #20b8b0;
+        }
+
+        /* BUTTONS */
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 14px;
+            margin-top: 15px;
+            padding-top: 25px;
+            border-top: 1px solid #36545b;
+        }
+
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 14px 28px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .cancel {
+            background: #405b62;
+            color: #e3ebe8;
+        }
+
+        .cancel:hover {
+            background: #526d73;
+        }
+
+        .save {
+            background: #20aaa5;
+            color: #102d35;
+        }
+
+        .save:hover {
+            background: #2bc5be;
+        }
+
+        .message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #245c50;
+            color: #8ff0d0;
+            font-size: 17px;
+            text-align: center;
+        }
+
+        @media(max-width: 800px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main {
+                margin-left: 220px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">🦷</div>
+        <h1>SUNRISE</h1>
+        <p>DENTAL CLINIC</p>
+    </div>
+
+    <div class="menu">
+
+        <a href="dashboard.html">
+            <span class="menu-icon">⌂</span>
+            Dashboard
+        </a>
+
+        <a href="appointments.html">
+            <span class="menu-icon">📅</span>
+            Appointments
+        </a>
+
+        <a href="patients.html">
+            <span class="menu-icon">👤</span>
+            Patients
+        </a>
+
+        <a href="dentists.html">
+            <span class="menu-icon">🧑‍⚕️</span>
+            Dentists
+        </a>
+
+        <a href="services.html" class="active">
+            <span class="menu-icon">🦷</span>
+            Services
+        </a>
+
+        <a href="billing.html">
+            <span class="menu-icon">🧾</span>
+            Billing
+        </a>
+
+        <a href="reports.html">
+            <span class="menu-icon">📊</span>
+            Reports
+        </a>
+
+        <a href="notifications.html">
+            <span class="menu-icon">🔔</span>
+            Notifications
+        </a>
+
+        <a href="settings.html">
+            <span class="menu-icon">⚙️</span>
+            Settings
+        </a>
+
+        <a href="help.html">
+            <span class="menu-icon">❓</span>
+            Help
+        </a>
+
+        <a href="login.html">
+            <span class="menu-icon">↪</span>
+            Logout
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="topbar">
+
+        <div class="page-title">
+            Add New Service
+        </div>
+
+        <div class="profile">
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+            <div>
+                <strong>Dr. Sunrise</strong>
+                <small>Administrator</small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="content">
+
+        <div class="heading">
+
+            <h1>Add New Service</h1>
+
+            <p>
+                Add a new dental service to Sunrise Dental Clinic.
+            </p>
+
+        </div>
+
+
+        <div class="form-card">
+
+            <div class="form-header">
+
+                <div class="form-icon">
+                    🦷
+                </div>
+
+                <div>
+                    <h2>Service Information</h2>
+                    <p>Enter the details of the new dental service.</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Service Name</label>
+
+                    <input
+                            type="text"
+                            id="serviceName"
+                            placeholder="e.g. Teeth Cleaning">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Service Category</label>
+
+                    <select id="category">
+
+                        <option value="">Select Category</option>
+                        <option>General Dentistry</option>
+                        <option>Cosmetic Dentistry</option>
+                        <option>Restorative Dentistry</option>
+                        <option>Preventive Dentistry</option>
+                        <option>Surgery</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Service Fee (LKR)</label>
+
+                    <input
+                            type="number"
+                            id="fee"
+                            placeholder="Enter service fee">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Duration</label>
+
+                    <select id="duration">
+
+                        <option value="">Select Duration</option>
+                        <option>15 Minutes</option>
+                        <option>30 Minutes</option>
+                        <option>45 Minutes</option>
+                        <option>60 Minutes</option>
+                        <option>90 Minutes</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea
+                        id="description"
+                        placeholder="Enter service description"></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                        class="cancel"
+                        onclick="goBack()">
+
+                    Cancel
+
+                </button>
+
+                <button
+                        class="save"
+                        onclick="saveService()">
+
+                    ✓ Save Service
+
+                </button>
+
+            </div>
+
+
+            <div
+                    class="message"
+                    id="message">
+
+                ✓ Service added successfully!
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function saveService() {
+
+        const name =
+            document.getElementById("serviceName").value.trim();
+
+        const category =
+            document.getElementById("category").value;
+
+        const fee =
+            document.getElementById("fee").value;
+
+        const duration =
+            document.getElementById("duration").value;
+
+        if (name === "" ||
+            category === "" ||
+            fee === "" ||
+            duration === "") {
+
+            alert("Please fill in all required fields.");
+
+            return;
+        }
+
+        const service = {
+            name: name,
+            category: category,
+            fee: fee,
+            duration: duration,
+            description:
+            document.getElementById("description").value,
+            status:
+            document.getElementById("status").value
+        };
+
+        let services =
+            JSON.parse(
+                localStorage.getItem("sunriseServices")
+            ) || [];
+
+        services.push(service);
+
+        localStorage.setItem(
+            "sunriseServices",
+            JSON.stringify(services)
+        );
+
+        document.getElementById(
+            "message"
+        ).style.display = "block";
+
+        setTimeout(function () {
+
+            window.location.href = "services.html";
+
+        }, 1200);
+    }
+
+
+    function goBack() {
+
+        window.location.href =
+            "services.html";
+
+    }
+
+</script>
+
+</body>
+</html>
